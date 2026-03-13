@@ -14,11 +14,19 @@
         :icon="theme.current.value.dark ? 'mdi-weather-night' : 'mdi-weather-sunny'"
         @click="toggleTheme"
         color="primary"
-        variant="text"
+        variant="tonal"
+        class="fixed top-0 left-0 z-10 border ma-4 backdrop-blur-sm elevation-4"
       />
       <v-container fluid>
         <slot />
       </v-container>
+      <v-btn
+        icon="mdi-arrow-up"
+        color="primary"
+        variant="tonal"
+        class="fixed bottom-0 right-0 z-10 border ma-4 backdrop-blur-sm elevation-4"
+        @click="scrollToTop"
+      />
     </div>
   </v-app>
 </template>
@@ -27,6 +35,7 @@
   import { useTheme } from 'vuetify'
   const loading = ref(true)
   const theme = useTheme()
+  
 
   onMounted(() => {
     const savedTheme = localStorage.getItem('theme')
@@ -41,5 +50,9 @@
   const toggleTheme = () => {
     theme.toggle()
     localStorage.setItem('theme', theme.global.name.value)
+  }
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 </script>

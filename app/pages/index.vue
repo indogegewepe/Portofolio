@@ -34,6 +34,7 @@
               color="primary"
               variant="flat"
               size="large"
+              @click="scrollToElement('projects')"
             >
               View Projects
             </v-btn>
@@ -42,6 +43,7 @@
               color="primary"
               variant="tonal"
               size="large"
+              @click="scrollToElement('contact')"
             >
               Contact Me
             </v-btn>
@@ -110,7 +112,7 @@
           </div>
         </v-col>
       </v-row>
-      <v-row>
+      <v-row id="projects">
         <v-col cols="12">
           <h1 class="text-4xl font-bold my-4">Project Showcase</h1>
         </v-col>
@@ -125,7 +127,7 @@
           <v-card
             class="border d-flex flex-column w-100"
             variant="text"
-            elevation="2"
+            elevation="1"
           >
             <v-img
               v-show="value.img"
@@ -134,7 +136,7 @@
               cover
             />
             <v-card-title class="text-2xl font-bold text-primary">{{ value.title }}</v-card-title>
-            <v-card-text class="flex-grow-1">{{ value.desc }}</v-card-text>  <!-- flex-grow-1 -->
+            <v-card-text>{{ value.desc }}</v-card-text>
             <div class="flex flex-wrap gap-1 mx-4">
               <v-chip variant="tonal" class="border" color="primary" v-for="item, j in value.stack" :key="j">{{ item }}</v-chip>
             </div>
@@ -154,10 +156,10 @@
                 v-if="value.github"
                 prepend-icon="mdi-open-in-new"
                 :href="value.github"
-                class="flex-1"
+                class="flex-1 border"
                 target="_blank"
                 text="Source Code"
-                variant="outlined"
+                variant="tonal"
                 color="primary"
               />
             </template>
@@ -228,7 +230,7 @@
           </ul>
         </v-col>
       </v-row>
-      <v-row>
+      <v-row id="contact">
         <v-col cols="12">
           <h1 class="text-4xl font-bold mt-4">Contact</h1>
         </v-col>
@@ -441,6 +443,11 @@ const experience = [
     "Menulis dokumentasi kode dan panduan teknis."
   ], desc: "" },
 ]
+
+const scrollToElement = (id: string) => {
+  const el = document.getElementById(id);
+  if (el) el.scrollIntoView({ behavior: 'smooth' });
+}
 
 onMounted(() => {
   scrambleTweens.value = [

@@ -39,15 +39,15 @@ export default defineNuxtConfig({
         light: {
           dark: false,
           colors: {
-            primary: '#4A70A9',
+            primary: '#DA4848',
             secondary: '#5CBBF6',
             accent: '#8c9eff',
             error: '#ff5252',
             info: '#2196F3',
             success: '#4CAF50',
             warning: '#FFC107',
-            background: '#EFECE3',
-            surface: '#8FABD4'
+            background: '#F7F6E5',
+            surface: '#76D2DB'
           }
         },
         dark: {
