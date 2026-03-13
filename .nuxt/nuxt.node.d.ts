@@ -1,0 +1,20 @@
+/// <reference types="@nuxtjs/i18n" />
+/// <reference types="@nuxt/fonts" />
+/// <reference types="@nuxt/devtools" />
+/// <reference types="@nuxt/telemetry" />
+/// <reference types="@pinia/nuxt" />
+/// <reference types="vuetify-nuxt-module" />
+/// <reference types="@nuxt/eslint" />
+/// <reference path="types/nitro-layouts.d.ts" />
+/// <reference path="types/modules.d.ts" />
+/// <reference path="types/runtime-config.d.ts" />
+/// <reference path="types/app.config.d.ts" />
+/// <reference types="nuxt" />
+/// <reference path="../node_modules/@nuxt/vite-builder/dist/index.d.mts" />
+/// <reference path="../node_modules/@nuxt/nitro-server/dist/index.d.mts" />
+/// <reference types="vuetify-nuxt-module/custom-configuration" />
+/// <reference path="eslint-typegen.d.ts" />
+/// <reference path="types/nitro-middleware.d.ts" />
+/// <reference path="schema/nuxt.schema.d.ts" />
+
+export {}

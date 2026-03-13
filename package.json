@@ -1,0 +1,37 @@
+{
+  "name": "portfolio",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "lint": "eslint",
+    "lint:fix": "eslint --fix",
+    "mcp": "ruler apply",
+    "mcp:revert": "ruler revert"
+  },
+  "dependencies": {
+    "@mdi/font": "7.4.47",
+    "@nuxtjs/i18n": "^10.2.1",
+    "gsap": "^3.14.2",
+    "nuxt": "^4.2.2",
+    "pinia": "^3.0.4",
+    "vue": "^3.5.26",
+    "vuetify": "^4.0.1",
+    "vuetify-nuxt-module": "^0.19.5"
+  },
+  "devDependencies": {
+    "@nuxt/fonts": "^0.14.0",
+    "@tailwindcss/postcss": "^4.1.18",
+    "sass": "^1.97.1",
+    "tailwindcss": "^4.1.18",
+    "eslint": "^9.39.2",
+    "@nuxt/eslint": "^1.12.1",
+    "eslint-config-vuetify": "^4.3.4",
+    "@intellectronica/ruler": "^0.3.18",
+    "@pinia/nuxt": "^0.11.3"
+  }
+}
