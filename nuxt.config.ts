@@ -4,7 +4,21 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
 
   // ssr: false,
-  modules: ['@nuxt/fonts', 'vuetify-nuxt-module', '@nuxt/eslint', '@pinia/nuxt', '@nuxtjs/i18n'],
+  modules: [
+    '@nuxt/fonts',
+    'vuetify-nuxt-module',
+    '@nuxt/eslint',
+    '@pinia/nuxt'
+  ],
+  vite: {
+    optimizeDeps: {
+      include: [
+        'gsap',
+        'gsap/ScrollTrigger',
+        'gsap/ScrambleTextPlugin'
+      ]
+    }
+  },
 
   postcss: {
     plugins: {
@@ -34,38 +48,42 @@ export default defineNuxtConfig({
         },
       },
       theme: {
-      defaultTheme: 'light',
-      themes: {
-        light: {
-          dark: false,
-          colors: {
-            primary: '#DA4848',
-            secondary: '#5CBBF6',
-            accent: '#8c9eff',
-            error: '#ff5252',
-            info: '#2196F3',
-            success: '#4CAF50',
-            warning: '#FFC107',
-            background: '#F7F6E5',
-            surface: '#76D2DB'
+        defaultTheme: 'light',
+        themes: {
+          light: {
+            dark: false,
+            colors: {
+              primary: '#4F46E5',        // Indigo — tegas, profesional
+              secondary: '#6366F1',      // Indigo muda — harmonis dengan primary
+              accent: '#818CF8',         // Soft indigo untuk highlight
+              error: '#E53E3E',          // Merah elegan, tidak terlalu neon
+              info: '#3B82F6',           // Biru bersih
+              success: '#059669',        // Hijau tua elegan
+              warning: '#D97706',        // Amber hangat
+              background: '#F5F4F8',     // Off-white keunguan, tidak putih polos
+              surface: '#FFFFFF',        // Card/surface putih bersih
+              'on-background': '#1E1B2E',// Teks gelap di background
+              'on-surface': '#1E1B2E',   // Teks gelap di card
+            }
+          },
+          dark: {
+            dark: true,
+            colors: {
+              primary: '#818CF8',        // Indigo terang — kontras di dark bg
+              secondary: '#6366F1',      // Indigo medium
+              accent: '#A5B4FC',         // Indigo pastel untuk aksen lembut
+              error: '#FC8181',          // Merah lembut di dark mode
+              info: '#60A5FA',           // Biru cerah
+              success: '#34D399',        // Hijau mint elegan
+              warning: '#FBBF24',        // Amber cerah
+              background: '#0F0E17',     // Deep dark — hampir hitam, ada hint ungu
+              surface: '#1A1826',        // Card sedikit lebih terang dari bg
+              'on-background': '#E8E6F0',// Teks terang di background
+              'on-surface': '#E8E6F0',   // Teks terang di card
+            }
           }
-        },
-        dark: {
-          dark: true,
-          colors: {
-            primary: '#90CAF9',
-            secondary: '#64B5F6',
-            accent: '#FF4081',
-            error: '#FF5252',
-            info: '#2196F3',
-            success: '#4CAF50',
-            warning: '#FFC107',
-            background: '#121212',
-            surface: '#1E1E1E'
-          }
-        },
-      }
-    },
+        }
+      },
     },
   },
 
@@ -77,8 +95,8 @@ export default defineNuxtConfig({
     },
   },
 
-  i18n: {
-    defaultLocale: 'en',
-    vueI18n: './i18n.config.ts',
-  },
+  // i18n: {
+  //   defaultLocale: 'en',
+  //   vueI18n: './i18n.config.ts',
+  // },
 })

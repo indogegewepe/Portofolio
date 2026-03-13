@@ -3,7 +3,7 @@
     <v-container>
       <v-row>
         <v-col cols="12" md="8" class="content-center">
-          <h1 class="text-4xl font-bold text-primary mb-12">
+          <h1 class="text-4xl font-bold text-primary my-12">
             Bagas Tsiqoh Fiqyan Uwaidha
           </h1>
           <h1 ref="title" class="text-xl font-semibold mb-4">
@@ -128,6 +128,7 @@
             class="border d-flex flex-column w-100"
             variant="text"
             elevation="1"
+            :to="`/portfolio/${value.slug}`"
           >
             <v-img
               v-show="value.img"
@@ -197,7 +198,6 @@
             <p class="text-h6 text-primary">{{ value.jobDesc }}</p>
             <p class="text-caption text-medium-emphasis">{{ value.startDate }} — {{ value.endDate }}</p>
           </div>
-          <p v-if="value.desc" class="text-body-1 mb-2">{{ value.desc }}</p>
           <ul v-if="value.jobList.length" class="ml-4">
             <li v-for="item, j in value.jobList" :key="j" class="text-body-2 mb-1">
               <v-badge location="left center" :offset-x="-18" color="on-surface" dot>{{ item }}</v-badge>
@@ -382,7 +382,8 @@ const showCase = [
     img: "https://raw.githubusercontent.com/indogegewepe/Skripsiku/refs/heads/master/fr%20skripsi.png",
     stack: ["Nuxt.js", "FastAPI", "Supabase"],
     demo: "",
-    github: "https://github.com/indogegewepe/Skripsiku"
+    github: "https://github.com/indogegewepe/Skripsiku",
+    slug: "skripsiku"
   },
   {
     title: "WhatsApp Nutrition Bot",
@@ -390,7 +391,8 @@ const showCase = [
     img: "",
     stack: ["WWeb.js", "Google Translate API", "QR Code Terminal"],
     demo: "",
-    github: "https://github.com/indogegewepe/Bot-Whatsapp"
+    github: "https://github.com/indogegewepe/Bot-Whatsapp",
+    slug: "Bot-Whatsapp"
   },
   {
     title: "Find The Different",
@@ -398,7 +400,8 @@ const showCase = [
     img: "https://raw.githubusercontent.com/indogegewepe/GameDev/refs/heads/main/Assets/Home.jpg",
     stack: ["Unity", "C#"],
     demo: "https://github.com/indogegewepe/GameDev/raw/refs/heads/main/FindTheDifference.apk",
-    github: "https://github.com/indogegewepe/GameDev"
+    github: "https://github.com/indogegewepe/GameDev",
+    slug: "GameDev"
   },
   {
     title: "Web PHP CRUD",
@@ -406,7 +409,8 @@ const showCase = [
     img: "https://raw.githubusercontent.com/indogegewepe/Wonosobo/main/assets/img/Untitled.png",
     stack: ["PHP", "MySQL", "Bootstrap"],
     demo: "",
-    github: "https://github.com/indogegewepe/Wonosobo"
+    github: "https://github.com/indogegewepe/Wonosobo",
+    slug: "Wonosobo"
   },
   {
     title: "Bot Discord",
@@ -414,15 +418,17 @@ const showCase = [
     img: "",
     stack: ["Discord.js", "Distube", "JavaScript"],
     demo: "",
-    github: "https://github.com/indogegewepe/Supra-X-125"
+    github: "https://github.com/indogegewepe/Supra-X-125",
+    slug: "Supra-X-125"
   },
   {
     title: "View Saved Wifi",
-    desc: "Play song Bot Discord",
+    desc: "View saved wifi password on windows using simple code python",
     img: "",
     stack: ["Windows", "Python"],
     demo: "",
-    github: "https://github.com/indogegewepe/View-saved-wifi-password"
+    github: "https://github.com/indogegewepe/View-saved-wifi-password",
+    slug: "View-saved-wifi-password"
   },
 ]
 
@@ -433,7 +439,22 @@ const interactiveSkills = [
 ]
 
 const experience = [
-  { company: "CV Andita", jobDesc: "Full Stack Developer", startDate: "Jul 2025", endDate: "Aug 2025", jobList: [], desc: "Merancang, mengembangkan, dan mendeploy website responsif dengan optimasi sumber daya yang efisien." },
+  { company: "CV Gama Putra Santosa", jobDesc: "Game Designer", startDate: "Sep 2024", endDate: "Des 2024", jobList: [
+    "Saya merancang dan membuat Game Design Document (GDD)",
+    "Saya membuat sketsa, mockup UI, konsep karakter dan lingkungan untuk mendukung pengembangan game",
+    "Saya bertanggung jawab atas konsep keseluruhan dan koordinasi tim"
+  ] },
+  { company: "CV Andita", jobDesc: "Full Stack Developer", startDate: "Jul 2025", endDate: "Aug 2025", jobList: [
+    "Merancang UI/UX aplikasi menggunakan Figma",
+    "Mengembangkan frontend aplikasi menggunakan Next.js",
+    "Menerapkan styling responsif menggunakan Tailwind CSS untuk memastikan tampilan optimal di berbagai perangkat.",
+    "Mengimplementasikan animasi dan interactive UI menggunakan Aceternity untuk meningkatkan user experience.",
+    "Membangun backend headless CMS menggunakan Strapi untuk manajemen konten dan integrasi API.",
+    "Mengintegrasikan frontend dengan REST API dari Strapi untuk pengelolaan data secara dinamis.",
+    "Melakukan deployment frontend menggunakan Vercel dengan optimasi build dan performa.",
+    "Melakukan deployment dan pengelolaan backend menggunakan Railway.",
+    "Melakukan testing, debugging, dan optimasi performa aplikasi web."
+  ] },
   { company: "PT Fimosa Technology Indonesia", jobDesc: "Full Stack Developer", startDate: "Aug 2025", endDate: "Mar 2026", jobList: [
     "Mengembangkan dan memelihara Backend dan Frontend produk milik perusahaan.",
     "Merancang, mengimplementasikan dan mengoptimalkan database.",
@@ -441,7 +462,7 @@ const experience = [
     "Melakukan debugging dan pemecahan masalah teknis.",
     "Mengoptimalkan performa aplikasi.",
     "Menulis dokumentasi kode dan panduan teknis."
-  ], desc: "" },
+  ] },
 ]
 
 const scrollToElement = (id: string) => {

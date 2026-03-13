@@ -8,8 +8,7 @@ type InjectionType<A extends Plugin> = A extends {default: Plugin<infer T>} ? De
 type NuxtAppInjections = 
   InjectionType<typeof import("../../node_modules/@pinia/nuxt/dist/runtime/payload-plugin.js")> &
   InjectionType<typeof import("../../node_modules/nuxt/dist/app/plugins/revive-payload.client.js")> &
-  InjectionType<typeof import("../../node_modules/vuetify-nuxt-module/dist/runtime/plugins/vuetify-i18n-date.js")> &
-  InjectionType<typeof import("../../node_modules/vuetify-nuxt-module/dist/runtime/plugins/vuetify-i18n.js")> &
+  InjectionType<typeof import("../../node_modules/vuetify-nuxt-module/dist/runtime/plugins/vuetify-date.js")> &
   InjectionType<typeof import("../../node_modules/vuetify-nuxt-module/dist/runtime/plugins/vuetify-icons.js")> &
   InjectionType<typeof import("../../node_modules/vuetify-nuxt-module/dist/runtime/plugins/vuetify-client-hints.client.js")> &
   InjectionType<typeof import("../../node_modules/nuxt/dist/head/runtime/plugins/unhead.js")> &
@@ -26,21 +25,17 @@ type NuxtAppInjections =
   InjectionType<typeof import("../../node_modules/nuxt/dist/pages/runtime/plugins/check-if-page-unused.js")> &
   InjectionType<typeof import("../../node_modules/@nuxt/devtools/dist/runtime/plugins/devtools.server.js")> &
   InjectionType<typeof import("../../node_modules/@nuxt/devtools/dist/runtime/plugins/devtools.client.js")> &
-  InjectionType<typeof import("../../node_modules/@nuxtjs/i18n/dist/runtime/plugins/switch-locale-path-ssr.js")> &
-  InjectionType<typeof import("../../node_modules/@nuxtjs/i18n/dist/runtime/plugins/route-locale-detect.js")> &
-  InjectionType<typeof import("../../node_modules/@nuxtjs/i18n/dist/runtime/plugins/preload.js")> &
-  InjectionType<typeof import("../../node_modules/@nuxtjs/i18n/dist/runtime/plugins/dev.js")> &
-  InjectionType<typeof import("../../node_modules/@nuxtjs/i18n/dist/runtime/plugins/i18n.js")> &
   InjectionType<typeof import("../../node_modules/nuxt/dist/app/plugins/warn.dev.server.js")> &
   InjectionType<typeof import("../../node_modules/nuxt/dist/app/plugins/check-if-layout-used.js")> &
-  InjectionType<typeof import("../../node_modules/@nuxtjs/i18n/dist/runtime/plugins/ssg-detect.js")> &
+  InjectionType<typeof import("../../app/plugins/gsap.client")> &
+  InjectionType<typeof import("../../app/plugins/snackbar")> &
   InjectionType<typeof import("../../node_modules/vuetify-nuxt-module/dist/runtime/plugins/vuetify-client-hints.server.js")>
 
 declare module '#app' {
   interface NuxtApp extends NuxtAppInjections { }
 
   interface NuxtAppLiterals {
-    pluginName: 'vue-devtools-client' | 'nuxt:revive-payload:client' | 'vuetify:date-i18n:plugin' | 'vuetify:i18n:plugin' | 'vuetify:icons:plugin' | 'vuetify:client-hints:client:plugin' | 'nuxt:head' | 'nuxt:router' | 'nuxt:browser-devtools-timing' | 'nuxt:payload' | 'nuxt:revive-payload:server' | 'nuxt:chunk-reload' | 'pinia' | 'nuxt:global-components' | 'nuxt:prefetch' | 'nuxt:checkIfPageUnused' | 'i18n:plugin:switch-locale-path-ssr' | 'i18n:plugin:route-locale-detect' | 'i18n:plugin:preload' | 'i18n:dev' | 'i18n:plugin' | 'nuxt:checkIfLayoutUsed' | 'i18n:plugin:ssg-detect' | 'vuetify:client-hints:server:plugin' | 'vuetify:nuxt:server:plugin' | 'vuetify:nuxt:client:plugin'
+    pluginName: 'vue-devtools-client' | 'nuxt:revive-payload:client' | 'vuetify:date:plugin' | 'vuetify:icons:plugin' | 'vuetify:client-hints:client:plugin' | 'nuxt:head' | 'nuxt:router' | 'nuxt:browser-devtools-timing' | 'nuxt:payload' | 'nuxt:revive-payload:server' | 'nuxt:chunk-reload' | 'pinia' | 'nuxt:global-components' | 'nuxt:prefetch' | 'nuxt:checkIfPageUnused' | 'nuxt:checkIfLayoutUsed' | 'vuetify:client-hints:server:plugin' | 'vuetify:nuxt:server:plugin' | 'vuetify:nuxt:client:plugin'
   }
 }
 
