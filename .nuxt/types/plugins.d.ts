@@ -27,7 +27,6 @@ type NuxtAppInjections =
   InjectionType<typeof import("../../node_modules/@nuxt/devtools/dist/runtime/plugins/devtools.client.js")> &
   InjectionType<typeof import("../../node_modules/nuxt/dist/app/plugins/warn.dev.server.js")> &
   InjectionType<typeof import("../../node_modules/nuxt/dist/app/plugins/check-if-layout-used.js")> &
-  InjectionType<typeof import("../../app/plugins/gsap.client")> &
   InjectionType<typeof import("../../app/plugins/snackbar")> &
   InjectionType<typeof import("../../node_modules/vuetify-nuxt-module/dist/runtime/plugins/vuetify-client-hints.server.js")>
 

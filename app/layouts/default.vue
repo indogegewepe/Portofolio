@@ -2,10 +2,7 @@
   <v-app>
     <div v-if="loading" class="flex flex-col h-full items-center justify-center">
       <v-icon size="80" class="mb-4">mdi-vuetify</v-icon>
-      <v-progress-circular
-        indeterminate
-        color="primary"
-      />
+      <div class="spinner mb-4" />
       <h2 class="text-xl mt-4">Memuat Aplikasi...</h2>
     </div>
 
@@ -35,16 +32,16 @@
   import { useTheme } from 'vuetify'
   const loading = ref(true)
   const theme = useTheme()
-  
 
-  onMounted(() => {
+  onMounted(async () => {
     const savedTheme = localStorage.getItem('theme')
     if (savedTheme) {
       theme.global.name.value = savedTheme
     }
-    nextTick(() => {
-      loading.value = false
-    })
+    await document.fonts.ready
+    await nextTick()
+
+    loading.value = false
   })
 
   const toggleTheme = () => {
@@ -56,3 +53,18 @@
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 </script>
+
+<style scoped>
+.spinner {
+  width: 48px;
+  height: 48px;
+  border: 5px solid rgba(128,128,128,0.2);
+  border-top-color: rgb(var(--v-theme-primary));
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+</style>

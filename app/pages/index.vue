@@ -152,6 +152,7 @@
                 text="Demo"
                 variant="flat"
                 color="primary"
+                @click.stop
               />
               <v-btn
                 v-if="value.github"
@@ -162,6 +163,7 @@
                 text="Source Code"
                 variant="tonal"
                 color="primary"
+                @click.stop
               />
             </template>
           </v-card>
