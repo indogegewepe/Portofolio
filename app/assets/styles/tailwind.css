@@ -74,3 +74,56 @@
 
 /* safelist for elevation="..." props */
 @source inline('elevation-{0,1,2,3,4,5}');
+
+.app-atmosphere {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    radial-gradient(circle at 10% -5%, rgba(var(--v-theme-primary), 0.14), transparent 36%),
+    radial-gradient(circle at 92% 12%, rgba(var(--v-theme-info), 0.12), transparent 32%),
+    linear-gradient(165deg, rgba(var(--v-theme-background), 1) 0%, rgba(var(--v-theme-surface), 0.95) 55%, rgba(var(--v-theme-background), 1) 100%);
+}
+
+.app-atmosphere::before,
+.app-atmosphere::after {
+  content: '';
+  position: absolute;
+  width: clamp(16rem, 40vw, 34rem);
+  height: clamp(16rem, 40vw, 34rem);
+  border-radius: 28% 72% 43% 57% / 43% 32% 68% 57%;
+  pointer-events: none;
+  filter: blur(72px);
+  opacity: 0.2;
+  z-index: 0;
+}
+
+.app-atmosphere::before {
+  top: -11rem;
+  left: -10rem;
+  background: linear-gradient(135deg, rgba(var(--v-theme-primary), 0.9), rgba(var(--v-theme-info), 0.65));
+}
+
+.app-atmosphere::after {
+  top: 24rem;
+  right: -12rem;
+  background: linear-gradient(135deg, rgba(var(--v-theme-info), 0.85), rgba(var(--v-theme-primary), 0.52));
+}
+
+.app-atmosphere-grain {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.12;
+  background-image:
+    radial-gradient(rgba(var(--v-theme-on-surface), 0.28) 0.5px, transparent 0.5px),
+    radial-gradient(rgba(var(--v-theme-on-surface), 0.22) 0.5px, transparent 0.5px);
+  background-size: 3px 3px, 5px 5px;
+  background-position: 0 0, 1px 1px;
+}
+
+.app-atmosphere > :not(.app-atmosphere-grain) {
+  position: relative;
+  z-index: 1;
+}

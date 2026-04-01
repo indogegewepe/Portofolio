@@ -568,29 +568,6 @@ onUnmounted(() => {
   overflow: hidden;
 }
 
-.portfolio-home::before,
-.portfolio-home::after {
-  content: "";
-  position: absolute;
-  width: 34rem;
-  height: 34rem;
-  pointer-events: none;
-  filter: blur(72px);
-  opacity: 0.16;
-}
-
-.portfolio-home::before {
-  top: -12rem;
-  left: -14rem;
-  background: rgb(var(--v-theme-primary));
-}
-
-.portfolio-home::after {
-  top: 18rem;
-  right: -14rem;
-  background: rgb(var(--v-theme-info));
-}
-
 .hero-section {
   min-height: 88vh;
 }

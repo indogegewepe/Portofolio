@@ -34,9 +34,8 @@ onMounted(() => {
 
 <template>
   <v-app>
-    <main class="error-shell">
-      <div class="orb orb-a" />
-      <div class="orb orb-b" />
+    <main class="error-shell app-atmosphere">
+      <div class="app-atmosphere-grain" aria-hidden="true" />
 
       <v-container class="fill-height d-flex align-center justify-center py-10">
         <v-card class="error-card pa-6 pa-md-10" variant="text" max-width="780">
@@ -61,33 +60,6 @@ onMounted(() => {
 <style scoped>
 .error-shell {
   min-height: 100vh;
-  position: relative;
-  overflow: hidden;
-  background:
-    radial-gradient(circle at 10% 0%, rgba(var(--v-theme-primary), 0.1), transparent 40%),
-    radial-gradient(circle at 90% 100%, rgba(var(--v-theme-info), 0.12), transparent 35%),
-    rgb(var(--v-theme-background));
-}
-
-.orb {
-  position: absolute;
-  width: 22rem;
-  height: 22rem;
-  border-radius: 999px;
-  filter: blur(64px);
-  pointer-events: none;
-}
-
-.orb-a {
-  top: -9rem;
-  left: -10rem;
-  background: rgba(var(--v-theme-primary), 0.28);
-}
-
-.orb-b {
-  right: -10rem;
-  bottom: -8rem;
-  background: rgba(var(--v-theme-info), 0.24);
 }
 
 .error-card {

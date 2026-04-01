@@ -13,7 +13,8 @@
         variant="tonal"
         class="fixed top-0 left-0 z-10 border ma-4 backdrop-blur-sm elevation-4"
       />
-      <v-container fluid>
+      <v-container fluid class="app-atmosphere">
+        <div class="app-atmosphere-grain" aria-hidden="true" />
         <slot />
       </v-container>
       <v-btn
@@ -57,6 +58,7 @@
 .v-container {
   padding: 0;
 }
+
 .loader {
   width: 48px;
   height: 48px;
