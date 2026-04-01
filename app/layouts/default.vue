@@ -54,6 +54,9 @@
 </script>
 
 <style scoped>
+.v-container {
+  padding: 0;
+}
 .loader {
   width: 48px;
   height: 48px;

@@ -1,54 +1,194 @@
 <template>
-  <v-row justify="center" class="markdown-page">
-    <v-col cols="12" md="10" lg="8">
-      <div class="back-btn-wrapper mb-6 mt-4">
-        <v-btn
-          prepend-icon="mdi-arrow-left"
-          variant="flat"
-          color="primary"
-          @click="router.back()"
-        >
-          Back to Portfolio
-        </v-btn>
-      </div>
+  <v-main class="project-detail">
+    <v-container class="py-8 py-md-12">
+      <v-row justify="center">
+        <v-col cols="12" lg="10">
+          <section class="hero-card mb-6" data-reveal-section>
+            <div class="d-flex flex-wrap justify-space-between align-center ga-3 mb-5" data-reveal-item>
+              <v-btn prepend-icon="mdi-arrow-left" variant="outlined" color="primary" class="text-none" @click="router.back()">
+                Back to Portfolio
+              </v-btn>
+              <div class="d-flex ga-2">
+                <v-chip size="small" color="primary" variant="tonal">Project Detail</v-chip>
+                <v-chip size="small" color="info" variant="tonal">README Showcase</v-chip>
+              </div>
+            </div>
 
-      <v-card variant="tonal" rounded="xl" class="markdown-card pa-8 pa-md-12">
-        <div v-if="content" class="markdown-body" v-html="content" />
-        <div v-else class="empty-state">
-          <v-icon size="48">mdi-file-document-outline</v-icon>
-          <p class="mt-4 text-medium-emphasis">Data tidak ditemukan.</p>
-        </div>
-      </v-card>
-    </v-col>
-  </v-row>
+            <h1 class="detail-title mb-2" data-reveal-item>{{ projectTitle }}</h1>
+            <p class="detail-lead mb-4" data-reveal-item>{{ projectDescription }}</p>
+
+            <div class="d-flex flex-wrap ga-2" data-reveal-item>
+              <v-chip v-for="(stack, i) in projectStack" :key="i" size="small" variant="tonal" color="primary" class="stack-chip">
+                {{ stack }}
+              </v-chip>
+            </div>
+          </section>
+
+          <v-card class="markdown-card pa-6 pa-md-10" variant="text" data-reveal-section>
+            <div v-if="content" class="markdown-body" v-html="content" data-reveal-item />
+            <div v-else class="empty-state" data-reveal-item>
+              <v-icon size="48">mdi-file-document-outline</v-icon>
+              <p class="mt-4 text-medium-emphasis">Data tidak ditemukan.</p>
+            </div>
+          </v-card>
+        </v-col>
+      </v-row>
+    </v-container>
+  </v-main>
 </template>
 
 <script setup lang="ts">
 import { marked } from "marked"
+import { gsap } from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { onMounted, onUnmounted, ref } from "vue"
 import { useRoute, useRouter } from "vue-router"
+
+gsap.registerPlugin(ScrollTrigger)
 
 const route = useRoute()
 const router = useRouter()
 
-const slug = route.params.slug
-const url = `https://raw.githubusercontent.com/indogegewepe/${slug}/master/README.md`
+const slug = String(route.params.slug || "")
+const apiReadmeUrl = `https://api.github.com/repos/indogegewepe/${slug}/readme`
+const ctx = ref<gsap.Context | null>(null)
 
-const { data } = await useFetch(url)
+const projectMeta: Record<string, { title: string, desc: string, stack: string[] }> = {
+  skripsiku: {
+    title: "UAD Course Scheduler",
+    desc: "Web-Based Academic Scheduling System with Dynamic Constraints.",
+    stack: ["Nuxt.js", "FastAPI", "Supabase"]
+  },
+  "Bot-Whatsapp": {
+    title: "WhatsApp Nutrition Bot",
+    desc: "Bot WhatsApp untuk informasi nutrisi makanan secara cepat dan praktis.",
+    stack: ["WWeb.js", "Google Translate API", "QR Code Terminal"]
+  },
+  GameDev: {
+    title: "Find The Different",
+    desc: "Game edukasi interaktif untuk anak-anak.",
+    stack: ["Unity", "C#"]
+  },
+  Wonosobo: {
+    title: "Web PHP CRUD",
+    desc: "Website PHP native dengan fitur CRUD dan export PDF.",
+    stack: ["PHP", "MySQL", "Bootstrap"]
+  },
+  "Supra-X-125": {
+    title: "Bot Discord",
+    desc: "Discord music bot untuk kebutuhan komunitas server.",
+    stack: ["Discord.js", "Distube", "JavaScript"]
+  },
+  "View-saved-wifi-password": {
+    title: "View Saved Wifi",
+    desc: "Script Python sederhana untuk membaca saved WiFi profile di Windows.",
+    stack: ["Windows", "Python"]
+  }
+}
+
+const { data } = await useFetch<string>(apiReadmeUrl, {
+  headers: {
+    Accept: "application/vnd.github.raw"
+  },
+  responseType: "text"
+})
 
 const content = computed(() => {
   if (!data.value) return ""
   return marked.parse(data.value as string)
 })
+
+const projectTitle = computed(() => projectMeta[slug]?.title || slug)
+const projectDescription = computed(() => projectMeta[slug]?.desc || "Repository detail dan dokumentasi project.")
+const projectStack = computed(() => projectMeta[slug]?.stack || [])
+
+onMounted(() => {
+  ctx.value = gsap.context(() => {
+    const sections = gsap.utils.toArray<HTMLElement>("[data-reveal-section]")
+    sections.forEach((section) => {
+      const items = section.querySelectorAll("[data-reveal-item]")
+      if (!items.length) return
+
+      gsap.from(items, {
+        y: 28,
+        opacity: 0,
+        duration: 0.65,
+        ease: "power2.out",
+        stagger: 0.1,
+        scrollTrigger: {
+          trigger: section,
+          start: "top 84%",
+          toggleActions: "play none none reverse"
+        }
+      })
+    })
+  })
+})
+
+onUnmounted(() => {
+  ctx.value?.revert()
+})
 </script>
 
 <style scoped>
-.markdown-page {
+.project-detail {
   min-height: 100vh;
-  padding: 24px 16px 64px;
+  position: relative;
+  overflow: hidden;
+}
+
+.project-detail::before,
+.project-detail::after {
+  content: "";
+  position: absolute;
+  width: 30rem;
+  height: 30rem;
+  border-radius: 999px;
+  filter: blur(70px);
+  opacity: 0.14;
+  pointer-events: none;
+}
+
+.project-detail::before {
+  top: -9rem;
+  left: -10rem;
+  background: rgb(var(--v-theme-primary));
+}
+
+.project-detail::after {
+  top: 24rem;
+  right: -12rem;
+  background: rgb(var(--v-theme-info));
+}
+
+.hero-card {
+  border-radius: 1rem;
+  border: 1px solid rgba(var(--v-theme-primary), 0.24);
+  background: color-mix(in srgb, rgb(var(--v-theme-surface)) 84%, rgb(var(--v-theme-primary)) 16%);
+  backdrop-filter: blur(2px);
+  padding: 1.25rem;
+}
+
+.detail-title {
+  font-size: clamp(1.6rem, 4vw, 2.8rem);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.detail-lead {
+  max-width: 75ch;
+  color: rgba(var(--v-theme-on-surface), 0.76);
+  line-height: 1.7;
+}
+
+.stack-chip {
+  border: 1px solid rgba(var(--v-theme-primary), 0.24);
 }
 
 .markdown-card {
-  border: 1px solid rgba(var(--v-border-color), var(--v-border-opacity));
+  border-radius: 1rem;
+  border: 1px solid rgba(var(--v-theme-primary), 0.22);
+  background: color-mix(in srgb, rgb(var(--v-theme-surface)) 92%, rgb(var(--v-theme-primary)) 8%);
 }
 
 .empty-state {
@@ -62,9 +202,9 @@ const content = computed(() => {
 
 /* ===== Markdown Body ===== */
 .markdown-body {
-  font-family: 'Georgia', 'Times New Roman', serif;
+  font-family: var(--font-body);
   font-size: 1rem;
-  line-height: 1.85;
+  line-height: 1.8;
   word-break: break-word;
   color: rgba(var(--v-theme-on-surface), var(--v-high-emphasis-opacity));
 }
@@ -76,7 +216,7 @@ const content = computed(() => {
 .markdown-body :deep(h4),
 .markdown-body :deep(h5),
 .markdown-body :deep(h6) {
-  font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
+  font-family: var(--font-heading);
   font-weight: 700;
   line-height: 1.3;
   margin-top: 2em;
@@ -162,7 +302,7 @@ const content = computed(() => {
 
 /* Code — inline */
 .markdown-body :deep(code) {
-  font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+  font-family: var(--font-mono);
   font-size: 0.875em;
   background-color: rgba(var(--v-theme-on-surface), 0.06);
   border: 1px solid rgba(var(--v-border-color), var(--v-border-opacity));
@@ -205,7 +345,7 @@ const content = computed(() => {
 .markdown-body :deep(th) {
   background-color: rgb(var(--v-theme-primary));
   color: rgb(var(--v-theme-on-primary));
-  font-family: 'Segoe UI', sans-serif;
+  font-family: var(--font-heading);
   font-weight: 600;
   padding: 0.75em 1em;
   text-align: left;

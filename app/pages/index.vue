@@ -1,63 +1,33 @@
 <template>
-  <v-main>
-    <v-container>
-      <v-row>
-        <v-col cols="12" md="8" class="content-center">
-          <h1 class="text-4xl font-bold text-primary my-12">
-            Bagas Tsiqoh Fiqyan Uwaidha
-          </h1>
-          <h1 ref="title" class="text-xl font-semibold mb-4">
-            Full-Stack Developer
-          </h1>
-          <p class="text-medium-emphasis border-s-2 pl-4 mb-12">
-            Full Stack Developer dengan pengalaman membangun aplikasi web menggunakan Nuxt.js, Node.js, dan Express.js. Berpengalaman dalam pengembangan RESTful API, desain database, autentikasi JWT, serta deployment aplikasi di Google Cloud Platform. Memiliki minat pada pengembangan sistem terdistribusi, optimasi algoritma, dan scalable backend architecture.
-          </p>
-          <v-card-actions>
-            <v-btn
-              icon="mdi-github"
-              color="primary"
-              variant="text"
-              href="https://github.com/indogegewepe"
-              target="_blank"
-            />
-            <v-btn
-              icon="mdi-linkedin"
-              color="primary"
-              variant="text"
-              href="https://www.linkedin.com/in/bagas-uwaidha/"
-              target="_blank"
-            />
-          </v-card-actions>
-          <v-card-actions>
-            <v-btn
-              prepend-icon="mdi-view-carousel"
-              color="primary"
-              variant="flat"
-              size="large"
-              @click="scrollToElement('projects')"
-            >
+  <v-main class="portfolio-home">
+    <v-container class="fak py-8 py-md-12">
+      <v-row class="hero-section align-center" data-reveal-section>
+        <v-col cols="12" md="7" class="mb-8 mb-md-0" data-reveal-item>
+          <v-chip class="mb-5" color="primary" variant="tonal" size="small">
+            Available for freelance and full-time
+          </v-chip>
+          <h1 class="hero-name mb-4">Bagas Tsiqoh Fiqyan Uwaidha</h1>
+          <h2 ref="title" class="hero-role mb-3"/>
+          <p ref="subtitle" class="hero-lead mb-8"/>
+          <div class="d-flex flex-wrap ga-3 mb-5">
+            <v-btn prepend-icon="mdi-view-carousel" color="primary" variant="flat" size="large" class="text-none" @click="scrollToElement('projects')">
               View Projects
             </v-btn>
-            <v-btn
-              prepend-icon="mdi-email"
-              color="primary"
-              variant="tonal"
-              size="large"
-              @click="scrollToElement('contact')"
-            >
+            <v-btn prepend-icon="mdi-email" color="primary" variant="outlined" size="large" class="text-none" @click="scrollToElement('contact')">
               Contact Me
             </v-btn>
-          </v-card-actions>
+          </div>
+          <div class="d-flex ga-2">
+            <v-btn icon="mdi-github" color="primary" variant="tonal" href="https://github.com/indogegewepe" target="_blank" />
+            <v-btn icon="mdi-linkedin" color="primary" variant="tonal" href="https://www.linkedin.com/in/bagas-uwaidha/" target="_blank" />
+          </div>
         </v-col>
-        <v-col cols="12" md="4">
-          <div ref="mainRef">
+
+        <v-col cols="12" md="5" data-reveal-item>
+          <div ref="mainRef" class="hero-portrait-wrap">
             <div ref="outerRef">
-              <v-card variant="elevated" class="border bg-primary">
-                <v-img
-                  ref="logoRef"
-                  lazy-src="/assets/profile.png"
-                  src="/assets/profile.png"
-                >
+              <v-card variant="elevated" class="hero-portrait-card">
+                <v-img ref="logoRef" lazy-src="/assets/profile.png" src="/assets/profile.png" cover>
                   <template #placeholder>
                     <div class="d-flex align-center justify-center fill-height">
                       <v-progress-circular color="primary" indeterminate />
@@ -69,85 +39,90 @@
           </div>
         </v-col>
       </v-row>
-      <v-row>
-        <v-col cols="12">
-          <h1 class="text-4xl font-bold my-4">
-            Tentang Saya
-          </h1>
-          <p class="text-h5 text-medium-emphasis mb-4">Software Developer</p>
-          
-          <v-row>
-            <v-col cols="12" md="3">
-              <v-card class="border mb-4" variant="tonal" color="primary" v-for="(stat, i) in stats" :key="i" :title="stat.label" :subtitle="stat.value" :text="stat.sub"/>
-            </v-col>
-            <v-col cols="12" md="9" class="mb-4">
-              <h1
-                v-for="(para, i) in paragraphs"
-                :key="i"
-                class="text-xl mb-8"
-              >
-                {{ para }}
-              </h1>
-            </v-col>
-          </v-row>
-          <div ref="tagsRef">
-            <h1 class="text-4xl font-bold my-4">Skills</h1>
-            <div
-              v-for="(tag, i) in tags"
-              :key="i"
-              variant="tonal"
-              color="primary"
-            >
-              <h1 class="text-xl mt-4">{{ tag.category }}</h1>
+
+      <v-row class="section-block" data-reveal-section>
+        <v-col cols="12" data-reveal-item>
+          <h2 class="section-title">Tentang Saya</h2>
+          <p class="section-caption">Software Developer</p>
+        </v-col>
+        <v-col cols="12" md="4" data-reveal-item>
+          <v-card
+            v-for="(stat, i) in stats"
+            :key="i"
+            class="panel-card mb-4"
+            variant="tonal"
+            color="primary"
+            :title="stat.label"
+            :subtitle="stat.value"
+            :text="stat.sub"
+          />
+        </v-col>
+        <v-col cols="12" md="8" data-reveal-item>
+          <p v-for="(para, i) in paragraphs" :key="i" class="about-paragraph">
+            {{ para }}
+          </p>
+        </v-col>
+      </v-row>
+
+      <v-row class="section-block" data-reveal-section>
+        <v-col cols="12" data-reveal-item>
+          <h2 class="section-title">Skills</h2>
+        </v-col>
+        <v-col v-for="(tag, i) in tags" :key="i" cols="12" md="6" lg="4" data-reveal-item>
+          <v-card class="panel-card pa-4 h-full" variant="text">
+            <h3 class="text-h6 font-weight-bold mb-3">{{ tag.category }}</h3>
+            <div class="d-flex flex-wrap ga-2">
               <v-chip
                 v-for="(child, ci) in tag.children"
                 :key="ci"
                 variant="tonal"
                 color="primary"
-                class="border mr-2 my-1"
+                class="skill-chip"
               >
                 {{ child.name }}
               </v-chip>
             </div>
-          </div>
+          </v-card>
         </v-col>
       </v-row>
-      <v-row id="projects">
-        <v-col cols="12">
-          <h1 class="text-4xl font-bold my-4">Project Showcase</h1>
+
+      <v-row id="projects" class="section-block" data-reveal-section>
+        <v-col cols="12" data-reveal-item>
+          <h2 class="section-title">Project Showcase</h2>
         </v-col>
-        <v-col 
-          cols="12" 
-          md="6" 
-          lg="4"
-          v-for="value, i in showCase"
+        <v-col
+          v-for="(value, i) in showCase"
           :key="i"
+          cols="12"
+          md="6"
+          lg="4"
           class="d-flex"
+          data-reveal-item
         >
-          <v-card
-            class="border d-flex flex-column w-100"
-            variant="text"
-            elevation="1"
-            :to="`/portfolio/${value.slug}`"
-          >
-            <v-img
-              v-show="value.img"
-              height="250"
-              :src="value.img"
-              cover
-            />
-            <v-card-title class="text-2xl font-bold text-primary">{{ value.title }}</v-card-title>
-            <v-card-text>{{ value.desc }}</v-card-text>
-            <div class="flex flex-wrap gap-1 mx-4">
-              <v-chip variant="tonal" class="border" color="primary" v-for="item, j in value.stack" :key="j">{{ item }}</v-chip>
+          <v-card class="panel-card project-card d-flex flex-column w-100" variant="text" :to="`/portfolio/${value.slug}`">
+            <v-img v-if="value.img" height="220" :src="value.img" cover class="project-image" />
+            <v-card-title class="text-h5 font-weight-bold text-primary">{{ value.title }}</v-card-title>
+            <v-card-text class="text-medium-emphasis">{{ value.desc }}</v-card-text>
+            <div class="d-flex flex-wrap ga-2 px-4 pb-4">
+              <v-chip
+                v-for="(item, j) in value.stack"
+                :key="j"
+                variant="tonal"
+                color="primary"
+                size="small"
+                class="skill-chip"
+              >
+                {{ item }}
+              </v-chip>
             </div>
-            <v-divider class="mt-4"/>
-            <template v-slot:actions>
+            <v-spacer />
+            <v-divider />
+            <template #actions>
               <v-btn
                 v-if="value.demo"
                 prepend-icon="mdi-open-in-new"
                 :href="value.demo"
-                class="flex-1"
+                class="flex-1 text-none"
                 target="_blank"
                 text="Demo"
                 variant="flat"
@@ -158,7 +133,7 @@
                 v-if="value.github"
                 prepend-icon="mdi-open-in-new"
                 :href="value.github"
-                class="flex-1 border"
+                class="flex-1 text-none"
                 target="_blank"
                 text="Source Code"
                 variant="tonal"
@@ -169,106 +144,108 @@
           </v-card>
         </v-col>
       </v-row>
-      <v-row>
-        <v-col 
-          cols="12"
-          v-for="value, i in interactiveSkills"
-          :key="i"
-        > 
-          <h1 class="text-xl font-semibold my-4">{{ value.title }}</h1>
-          <v-progress-linear
-            :color="value.color"
-            :model-value="value.value"
-            rounded
-            width="100%"
-            height="10"
-            striped
-          />
+
+      <v-row class="section-block" data-reveal-section>
+        <v-col cols="12" data-reveal-item>
+          <h2 class="section-title">Interactive Skills</h2>
+        </v-col>
+        <v-col cols="12" md="4" v-for="(value, i) in interactiveSkills" :key="i" data-reveal-item>
+          <v-card class="panel-card pa-4" variant="text">
+            <div class="d-flex justify-space-between align-center mb-2">
+              <h3 class="text-h6">{{ value.title }}</h3>
+              <span class="text-caption">{{ value.value }}%</span>
+            </div>
+            <v-progress-linear
+              :color="value.color"
+              :model-value="value.value"
+              rounded
+              width="100%"
+              height="10"
+              striped
+            />
+          </v-card>
         </v-col>
       </v-row>
-      <v-row>
-        <v-col cols="12">
-          <h1 class="text-4xl font-bold mt-4">Pengalaman Kerja</h1>
+
+      <v-row class="section-block" data-reveal-section>
+        <v-col cols="12" data-reveal-item>
+          <h2 class="section-title">Pengalaman Kerja</h2>
         </v-col>
-        <v-col 
-          cols="12"
-          v-for="value, i in experience "
-          :key="i"
-        >
-          <h1 class="text-xl font-semibold mb-4">{{ value.company }}</h1>
-          <div class="d-flex justify-space-between align-center mb-2">
-            <p class="text-h6 text-primary">{{ value.jobDesc }}</p>
-            <p class="text-caption text-medium-emphasis">{{ value.startDate }} — {{ value.endDate }}</p>
-          </div>
-          <ul v-if="value.jobList.length" class="ml-4">
-            <li v-for="item, j in value.jobList" :key="j" class="text-body-2 mb-1">
-              <v-badge location="left center" :offset-x="-18" color="on-surface" dot>{{ item }}</v-badge>
-            </li>
-          </ul>
-        </v-col>
-      </v-row>
-      <v-row>
-        <v-col cols="12">
-          <h1 class="text-4xl font-bold mt-4">Pendidikan</h1>
-        </v-col>
-        <v-col 
-          cols="12"
-        >
-          <h1 class="text-xl font-semibold mb-4">Universitas Ahmad Dahlan</h1>
-          <div class="d-flex justify-space-between align-center mb-2">
-            <p class="text-h6 text-primary">S1 Informatika · GPA : 3,71</p>
-            <p class="text-caption text-medium-emphasis">2020 — 2025</p>
-          </div>
-          <ul class="ml-4">
-            <li class="text-body-2 mb-1">
-              <v-badge location="left center" :offset-x="-18" color="on-surface" dot>Peserta Bangkit Academy 2024 – Cloud Computing Learning Path</v-badge>
-            </li>
-            <li class="text-body-2 mb-1">
-              <v-badge location="left center" :offset-x="-18" color="on-surface" dot>Mempelajari Google Cloud Platform, Firestore, dan deployment App Engine</v-badge>
-            </li>
-            <li class="text-body-2 mb-1">
-              <v-badge location="left center" :offset-x="-18" color="on-surface" dot>Skripsi: Optimasi Penjadwalan Universitas menggunakan Grey Wolf Optimizer</v-badge>
-            </li>
-          </ul>
+        <v-col cols="12" v-for="(value, i) in experience" :key="i" data-reveal-item>
+          <v-card class="panel-card pa-5" variant="text">
+            <h3 class="text-h6 font-weight-bold mb-3">{{ value.company }}</h3>
+            <div class="d-flex justify-space-between align-center mb-3 flex-wrap ga-2">
+              <p class="text-body-1 text-primary font-weight-medium">{{ value.jobDesc }}</p>
+              <p class="text-caption text-medium-emphasis">{{ value.startDate }} - {{ value.endDate }}</p>
+            </div>
+            <ul v-if="value.jobList.length" class="pl-5">
+              <li v-for="(item, j) in value.jobList" :key="j" class="text-body-2 mb-2">
+                {{ item }}
+              </li>
+            </ul>
+          </v-card>
         </v-col>
       </v-row>
-      <v-row id="contact">
-        <v-col cols="12">
-          <h1 class="text-4xl font-bold mt-4">Contact</h1>
+
+      <v-row class="section-block" data-reveal-section>
+        <v-col cols="12" data-reveal-item>
+          <h2 class="section-title">Pendidikan</h2>
         </v-col>
-        <v-col cols="12" md="6">
-          <v-list lines="two" class="bg-transparent">
-            <v-list-item
-              prepend-icon="mdi-email"
-              title="Email"
-              subtitle="bagasuwaidha007@gmail.com"
-              href="mailto:bagasuwaidha007@gmail.com"
-            />
-            <v-list-item
-              prepend-icon="mdi-whatsapp"
-              title="WhatsApp"
-              subtitle="+62 812-2786-8290"
-              href="https://wa.me/6281227868290"
-              target="_blank"
-            />
-            <v-list-item
-              prepend-icon="mdi-linkedin"
-              title="LinkedIn"
-              subtitle="bagasuwaidha"
-              href="https://www.linkedin.com/in/bagas-uwaidha/"
-              target="_blank"
-            />
-            <v-list-item
-              prepend-icon="mdi-github"
-              title="GitHub"
-              subtitle="indogegewepe"
-              href="https://github.com/indogegewepe"
-              target="_blank"
-            />
-          </v-list>
+        <v-col cols="12" data-reveal-item>
+          <v-card class="panel-card pa-5" variant="text">
+            <h3 class="text-h6 font-weight-bold mb-3">Universitas Ahmad Dahlan</h3>
+            <div class="d-flex justify-space-between align-center mb-3 flex-wrap ga-2">
+              <p class="text-body-1 text-primary font-weight-medium">S1 Informatika · GPA : 3,71</p>
+              <p class="text-caption text-medium-emphasis">2020 - 2025</p>
+            </div>
+            <ul class="pl-5">
+              <li class="text-body-2 mb-2">Peserta Bangkit Academy 2024 - Cloud Computing Learning Path</li>
+              <li class="text-body-2 mb-2">Mempelajari Google Cloud Platform, Firestore, dan deployment App Engine</li>
+              <li class="text-body-2 mb-2">Skripsi: Optimasi Penjadwalan Universitas menggunakan Grey Wolf Optimizer</li>
+            </ul>
+          </v-card>
         </v-col>
-        <v-col cols="12" md="6">
-          <v-card variant="tonal" color="primary" class="pa-4 border">
+      </v-row>
+
+      <v-row id="contact" class="section-block" data-reveal-section>
+        <v-col cols="12" data-reveal-item>
+          <h2 class="section-title">Contact</h2>
+        </v-col>
+        <v-col cols="12" md="6" data-reveal-item>
+          <v-card class="panel-card pa-2" variant="text">
+            <v-list lines="two" class="bg-transparent">
+              <v-list-item
+                prepend-icon="mdi-email"
+                title="Email"
+                subtitle="bagasuwaidha007@gmail.com"
+                href="mailto:bagasuwaidha007@gmail.com"
+              />
+              <v-list-item
+                prepend-icon="mdi-whatsapp"
+                title="WhatsApp"
+                subtitle="+62 812-2786-8290"
+                href="https://wa.me/6281227868290"
+                target="_blank"
+              />
+              <v-list-item
+                prepend-icon="mdi-linkedin"
+                title="LinkedIn"
+                subtitle="bagasuwaidha"
+                href="https://www.linkedin.com/in/bagas-uwaidha/"
+                target="_blank"
+              />
+              <v-list-item
+                prepend-icon="mdi-github"
+                title="GitHub"
+                subtitle="indogegewepe"
+                href="https://github.com/indogegewepe"
+                target="_blank"
+              />
+            </v-list>
+          </v-card>
+        </v-col>
+        <v-col cols="12" md="6" data-reveal-item>
+          <v-card class="panel-card pa-6" variant="tonal" color="primary">
             <p class="text-body-1 mb-4">
               Saya selalu terbuka untuk diskusi mengenai proyek baru, peluang kerja, atau sekadar berbagi insight seputar teknologi web.
             </p>
@@ -277,12 +254,12 @@
               color="primary"
               prepend-icon="mdi-send"
               href="mailto:bagasfiqyan@gmail.com"
+              class="text-none"
             >
               Kirim Pesan
             </v-btn>
           </v-card>
         </v-col>
-
       </v-row>
     </v-container>
   </v-main>
@@ -294,7 +271,6 @@ import { gsap } from "gsap"
 import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { SplitText } from "gsap/SplitText"
-import { VRow } from "vuetify/components"
 
 gsap.registerPlugin(ScrambleTextPlugin, SplitText, ScrollTrigger)
 
@@ -477,7 +453,7 @@ onMounted(() => {
     gsap.to(title.value, {
       duration: 5,
       scrambleText: {
-        text: "Front-End Developer",
+        text: "Full-Stack Developer",
         chars: "lowerCase",
         revealDelay: 0.5,
       },
@@ -486,7 +462,7 @@ onMounted(() => {
     gsap.to(subtitle.value, {
       duration: 5,
       scrambleText: {
-        text: "Specialized in Vue, Nuxt, and modern web architecture",
+        text: "Full Stack Developer dengan pengalaman membangun aplikasi web menggunakan Nuxt.js, Node.js, dan Express.js. Berpengalaman dalam pengembangan RESTful API, desain database, autentikasi JWT, serta deployment aplikasi di Google Cloud Platform.",
         chars: "lowerCase",
         revealDelay: 0.5,
       },
@@ -523,6 +499,25 @@ onMounted(() => {
     el?.addEventListener("pointermove", handleMove)
     el?.addEventListener("pointerleave", handleLeave)
 
+    const sections = gsap.utils.toArray<HTMLElement>("[data-reveal-section]")
+    sections.forEach((section) => {
+      const items = section.querySelectorAll("[data-reveal-item]")
+      if (!items.length) return
+
+      gsap.from(items, {
+        y: 32,
+        opacity: 0,
+        duration: 0.7,
+        ease: "power2.out",
+        stagger: 0.12,
+        scrollTrigger: {
+          trigger: section,
+          start: "top 82%",
+          toggleActions: "play none none reverse"
+        }
+      })
+    })
+
     return () => {
       el?.removeEventListener("pointermove", handleMove)
       el?.removeEventListener("pointerleave", handleLeave)
@@ -535,3 +530,117 @@ onUnmounted(() => {
   scrambleTweens.value.forEach(t => t.kill())
 })
 </script>
+
+<style scoped>
+.portfolio-home {
+  position: relative;
+  overflow: hidden;
+}
+
+.portfolio-home::before,
+.portfolio-home::after {
+  content: "";
+  position: absolute;
+  width: 34rem;
+  height: 34rem;
+  pointer-events: none;
+  filter: blur(72px);
+  opacity: 0.16;
+}
+
+.portfolio-home::before {
+  top: -12rem;
+  left: -14rem;
+  background: rgb(var(--v-theme-primary));
+}
+
+.portfolio-home::after {
+  top: 18rem;
+  right: -14rem;
+  background: rgb(var(--v-theme-info));
+}
+
+.hero-section {
+  min-height: 88vh;
+}
+
+.hero-name {
+  font-size: clamp(2rem, 5vw, 4rem);
+  line-height: 1.1;
+  letter-spacing: 0.01em;
+  font-weight: 700;
+}
+
+.hero-role {
+  font-size: clamp(1.15rem, 2vw, 1.65rem);
+  font-weight: 600;
+  color: rgb(var(--v-theme-primary));
+}
+
+.hero-lead {
+  max-width: 64ch;
+  line-height: 1.7;
+  border-left: 3px solid rgba(var(--v-theme-primary), 0.5);
+  padding-left: 1rem;
+  color: rgba(var(--v-theme-on-surface), 0.76);
+}
+
+.hero-portrait-wrap {
+  perspective: 1000px;
+}
+
+.hero-portrait-card {
+  border: 1px solid rgba(var(--v-theme-primary), 0.22);
+  overflow: hidden;
+  box-shadow: 0 24px 48px rgba(4, 18, 30, 0.2);
+}
+
+.section-block {
+  margin-top: 1.8rem;
+}
+
+.section-title {
+  font-size: clamp(1.45rem, 2.5vw, 2.15rem);
+  letter-spacing: 0.01em;
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+}
+
+.section-caption {
+  color: rgba(var(--v-theme-on-surface), 0.68);
+}
+
+.panel-card {
+  border: 1px solid rgba(var(--v-theme-primary), 0.2);
+  background: color-mix(in srgb, rgb(var(--v-theme-surface)) 88%, rgb(var(--v-theme-primary)) 12%);
+  backdrop-filter: blur(2px);
+}
+
+.about-paragraph {
+  line-height: 1.75;
+  margin-bottom: 1rem;
+}
+
+.skill-chip {
+  border: 1px solid rgba(var(--v-theme-primary), 0.25);
+}
+
+.project-card {
+  transition: transform 220ms ease, box-shadow 220ms ease;
+}
+
+.project-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 34px rgba(4, 18, 30, 0.16);
+}
+
+.project-image {
+  border-bottom: 1px solid rgba(var(--v-theme-primary), 0.2);
+}
+
+@media (max-width: 959px) {
+  .hero-section {
+    min-height: auto;
+  }
+}
+</style>
