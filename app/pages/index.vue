@@ -72,7 +72,7 @@
         </v-col>
         <v-col v-for="(tag, i) in tags" :key="i" cols="12" md="6" lg="4" data-reveal-item>
           <v-card class="panel-card pa-4 h-full" variant="text">
-            <h3 class="text-h6 font-weight-bold mb-3">{{ tag.category }}</h3>
+            <h3 class="text-h6 font-weight-bold mt-0">{{ tag.category }}</h3>
             <div class="d-flex flex-wrap ga-2">
               <v-chip
                 v-for="(child, ci) in tag.children"
@@ -471,7 +471,7 @@ onMounted(async () => {
   if (title.value) {
     scrambleTweens.value.push(
       gsap.to(title.value, {
-        duration: 5,
+        duration: 2,
         scrambleText: {
           text: "Full-Stack Developer",
           chars: "lowerCase",
@@ -485,7 +485,7 @@ onMounted(async () => {
   if (subtitle.value) {
     scrambleTweens.value.push(
       gsap.to(subtitle.value, {
-        duration: 5,
+        duration: 2.5,
         scrambleText: {
           text: "Full Stack Developer dengan pengalaman membangun aplikasi web menggunakan Nuxt.js, Node.js, dan Express.js. Berpengalaman dalam pengembangan RESTful API, desain database, autentikasi JWT, serta deployment aplikasi di Google Cloud Platform.",
           chars: "lowerCase",

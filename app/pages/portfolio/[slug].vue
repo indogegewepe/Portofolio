@@ -4,15 +4,11 @@
       <v-row justify="center">
         <v-col cols="12" lg="10">
           <v-card variant="text" class="hero-card mb-6" data-reveal-section>
-            <div class="d-flex flex-wrap justify-space-between align-center ga-3 mb-5" data-reveal-item>
-              <v-btn prepend-icon="mdi-arrow-left" variant="outlined" color="primary" class="text-none" @click="router.back()">
-                Back to Portfolio
-              </v-btn>
-              <div class="d-flex ga-2">
-                <v-chip size="small" color="primary" variant="tonal">Project Detail</v-chip>
-                <v-chip size="small" color="info" variant="tonal">README Showcase</v-chip>
+              <div class="w-full text-right md:text-left" data-reveal-item>
+                <v-btn prepend-icon="mdi-arrow-left" variant="outlined" color="primary" class="text-none" @click="router.back()">
+                  Back to Portfolio
+                </v-btn>
               </div>
-            </div>
 
             <h1 class="detail-title mb-2" data-reveal-item>{{ projectTitle }}</h1>
             <p class="detail-lead mb-4" data-reveal-item>{{ projectDescription }}</p>
