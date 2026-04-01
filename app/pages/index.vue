@@ -59,8 +59,8 @@
             :text="stat.sub"
           />
         </v-col>
-        <v-col cols="12" md="8" data-reveal-item>
-          <p v-for="(para, i) in paragraphs" :key="i" class="about-paragraph">
+        <v-col cols="12" md="8">
+          <p v-for="(para, i) in paragraphs" :key="i" class="about-paragraph" data-reveal-item>
             {{ para }}
           </p>
         </v-col>
@@ -98,7 +98,7 @@
           cols="12"
           md="6"
           lg="4"
-          class="d-flex"
+          class="d-flex" 
           data-reveal-item
         >
           <v-card class="panel-card project-card d-flex flex-column w-100" variant="text" :to="`/portfolio/${value.slug}`">
