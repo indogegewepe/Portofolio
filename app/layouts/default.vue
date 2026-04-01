@@ -60,7 +60,7 @@
     const startedAt = performance.now()
     const savedTheme = localStorage.getItem('theme')
     if (savedTheme) {
-      theme.global.name.value = savedTheme
+      theme.change(savedTheme)
     }
 
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -108,8 +108,9 @@
   })
 
   const toggleTheme = () => {
-    theme.toggle()
-    localStorage.setItem('theme', theme.global.name.value)
+    const nextTheme = theme.global.current.value.dark ? 'light' : 'dark'
+    theme.change(nextTheme)
+    localStorage.setItem('theme', nextTheme)
   }
 
   const scrollToTop = () => {

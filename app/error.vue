@@ -27,7 +27,7 @@ const refreshPage = () => {
 onMounted(() => {
   const savedTheme = localStorage.getItem('theme')
   if (savedTheme) {
-    theme.global.name.value = savedTheme
+    theme.change(savedTheme)
   }
 })
 </script>
