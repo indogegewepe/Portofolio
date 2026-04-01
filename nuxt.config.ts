@@ -53,33 +53,33 @@ export default defineNuxtConfig({
           light: {
             dark: false,
             colors: {
-              primary: '#4F46E5',        // Indigo — tegas, profesional
-              secondary: '#6366F1',      // Indigo muda — harmonis dengan primary
-              accent: '#818CF8',         // Soft indigo untuk highlight
-              error: '#E53E3E',          // Merah elegan, tidak terlalu neon
-              info: '#3B82F6',           // Biru bersih
-              success: '#059669',        // Hijau tua elegan
-              warning: '#D97706',        // Amber hangat
-              background: '#F5F4F8',     // Off-white keunguan, tidak putih polos
-              surface: '#FFFFFF',        // Card/surface putih bersih
-              'on-background': '#1E1B2E',// Teks gelap di background
-              'on-surface': '#1E1B2E',   // Teks gelap di card
+              primary: '#0E7490',        // Teal-blue modern
+              secondary: '#14B8A6',      // Mint-teal segar
+              accent: '#F97316',         // Orange untuk CTA yang pop
+              error: '#DC2626',          // Red kuat tapi tetap bersih
+              info: '#0284C7',           // Sky blue
+              success: '#16A34A',        // Green natural
+              warning: '#D97706',        // Amber warm
+              background: '#F2F8FA',     // Cool off-white
+              surface: '#FFFFFF',        // Surface clean
+              'on-background': '#0B1F2A',// Teks utama
+              'on-surface': '#0B1F2A',   // Teks di card
             }
           },
           dark: {
             dark: true,
             colors: {
-              primary: '#818CF8',        // Indigo terang — kontras di dark bg
-              secondary: '#6366F1',      // Indigo medium
-              accent: '#A5B4FC',         // Indigo pastel untuk aksen lembut
-              error: '#FC8181',          // Merah lembut di dark mode
-              info: '#60A5FA',           // Biru cerah
-              success: '#34D399',        // Hijau mint elegan
-              warning: '#FBBF24',        // Amber cerah
-              background: '#0F0E17',     // Deep dark — hampir hitam, ada hint ungu
-              surface: '#1A1826',        // Card sedikit lebih terang dari bg
-              'on-background': '#E8E6F0',// Teks terang di background
-              'on-surface': '#E8E6F0',   // Teks terang di card
+              primary: '#22D3EE',        // Cyan terang untuk fokus
+              secondary: '#2DD4BF',      // Teal glow
+              accent: '#FB923C',         // Orange warm kontras
+              error: '#F87171',          // Red soft terang
+              info: '#38BDF8',           // Sky blue bright
+              success: '#4ADE80',        // Green bright
+              warning: '#FCD34D',        // Amber bright
+              background: '#07131B',     // Navy gelap modern
+              surface: '#0D1E28',        // Surface dark clean
+              'on-background': '#E6F3F7',// Teks terang
+              'on-surface': '#E6F3F7',   // Teks di card
             }
           }
         }

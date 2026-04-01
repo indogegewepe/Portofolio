@@ -1,11 +1,13 @@
 <template>
   <v-main class="portfolio-home">
-    <v-container class="fak py-8 py-md-12">
+    <v-container class="py-8 py-md-12">
       <v-row class="hero-section align-center" data-reveal-section>
         <v-col cols="12" md="7" class="mb-8 mb-md-0" data-reveal-item>
-          <v-chip class="mb-5" color="primary" variant="tonal" size="small">
-            Available for freelance and full-time
-          </v-chip>
+          <div class="w-full text-right md:text-left">
+            <v-chip color="primary" variant="tonal" size="small">
+              Available for freelance and full-time
+            </v-chip>
+          </div>
           <h1 class="hero-name mb-4">Bagas Tsiqoh Fiqyan Uwaidha</h1>
           <h2 ref="title" class="hero-role mb-3"/>
           <p ref="subtitle" class="hero-lead mb-8"/>
@@ -27,7 +29,7 @@
           <div ref="mainRef" class="hero-portrait-wrap">
             <div ref="outerRef">
               <v-card variant="elevated" class="hero-portrait-card">
-                <v-img ref="logoRef" lazy-src="/assets/profile.png" src="/assets/profile.png" cover>
+                <v-img ref="logoRef" :lazy-src="profileImage" :src="profileImage" cover>
                   <template #placeholder>
                     <div class="d-flex align-center justify-center fill-height">
                       <v-progress-circular color="primary" indeterminate />
@@ -213,39 +215,22 @@
         </v-col>
         <v-col cols="12" md="6" data-reveal-item>
           <v-card class="panel-card pa-2" variant="text">
-            <v-list lines="two" class="bg-transparent">
+            <v-list lines="two" class="bg-transparent contact-list">
               <v-list-item
-                prepend-icon="mdi-email"
-                title="Email"
-                subtitle="bagasuwaidha007@gmail.com"
-                href="mailto:bagasuwaidha007@gmail.com"
-              />
-              <v-list-item
-                prepend-icon="mdi-whatsapp"
-                title="WhatsApp"
-                subtitle="+62 812-2786-8290"
-                href="https://wa.me/6281227868290"
-                target="_blank"
-              />
-              <v-list-item
-                prepend-icon="mdi-linkedin"
-                title="LinkedIn"
-                subtitle="bagasuwaidha"
-                href="https://www.linkedin.com/in/bagas-uwaidha/"
-                target="_blank"
-              />
-              <v-list-item
-                prepend-icon="mdi-github"
-                title="GitHub"
-                subtitle="indogegewepe"
-                href="https://github.com/indogegewepe"
-                target="_blank"
+                v-for="(item, i) in contactItems"
+                :key="i"
+                :prepend-icon="item.icon"
+                :title="item.title"
+                :subtitle="item.subtitle"
+                :href="item.href"
+                :target="item.target"
+                rounded
               />
             </v-list>
           </v-card>
         </v-col>
         <v-col cols="12" md="6" data-reveal-item>
-          <v-card class="panel-card pa-6" variant="tonal" color="primary">
+          <v-card class="panel-card pa-6" variant="text" color="primary">
             <p class="text-body-1 mb-4">
               Saya selalu terbuka untuk diskusi mengenai proyek baru, peluang kerja, atau sekadar berbagi insight seputar teknologi web.
             </p>
@@ -271,6 +256,7 @@ import { gsap } from "gsap"
 import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { SplitText } from "gsap/SplitText"
+import profileImage from "~/assets/profile.png"
 
 gsap.registerPlugin(ScrambleTextPlugin, SplitText, ScrollTrigger)
 
@@ -414,6 +400,37 @@ const interactiveSkills = [
   { title: "Frontend", value: 90, color: "primary" }, 
   { title: "Backend", value: 60, color: "info" }, 
   { title: "UI/UX Design", value: 75, color: "error"}
+]
+
+const contactItems = [
+  {
+    icon: "mdi-email",
+    title: "Email",
+    subtitle: "bagasuwaidha007@gmail.com",
+    href: "mailto:bagasuwaidha007@gmail.com",
+    target: undefined
+  },
+  {
+    icon: "mdi-whatsapp",
+    title: "WhatsApp",
+    subtitle: "+62 812-2786-8290",
+    href: "https://wa.me/6281227868290",
+    target: "_blank"
+  },
+  {
+    icon: "mdi-linkedin",
+    title: "LinkedIn",
+    subtitle: "bagasuwaidha",
+    href: "https://www.linkedin.com/in/bagas-uwaidha/",
+    target: "_blank"
+  },
+  {
+    icon: "mdi-github",
+    title: "GitHub",
+    subtitle: "indogegewepe",
+    href: "https://github.com/indogegewepe",
+    target: "_blank"
+  }
 ]
 
 const experience = [
@@ -636,6 +653,25 @@ onUnmounted(() => {
 
 .project-image {
   border-bottom: 1px solid rgba(var(--v-theme-primary), 0.2);
+}
+
+.portfolio-home :deep(.v-btn:focus-visible) {
+  outline: 2px solid rgba(var(--v-theme-primary), 0.45);
+  outline-offset: 2px;
+}
+
+.contact-list :deep(.v-list-item) {
+  margin-bottom: 6px;
+  transition: background-color 180ms ease;
+}
+
+.contact-list :deep(.v-list-item:hover) {
+  background-color: rgba(var(--v-theme-primary), 0.08);
+}
+
+.contact-list :deep(.v-list-item--link:focus-visible) {
+  outline: 2px solid rgba(var(--v-theme-primary), 0.5);
+  outline-offset: 2px;
 }
 
 @media (max-width: 959px) {
