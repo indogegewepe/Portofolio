@@ -3,11 +3,9 @@
     <v-container class="py-8 py-md-12">
       <v-row class="hero-section align-center" data-reveal-section>
         <v-col cols="12" md="7" class="mb-8 mb-md-0" data-reveal-item>
-          <div class="w-full text-right md:text-left">
-            <v-chip color="primary" variant="tonal" size="small">
-              {{ t('home.availability') }}
-            </v-chip>
-          </div>
+          <v-chip color="primary" variant="tonal" size="small">
+            {{ t('home.availability') }}
+          </v-chip>
           <h1 class="hero-name mb-4">{{ t('home.hero.name') }}</h1>
           <h2 ref="title" class="hero-role mb-3">{{ heroTitle }}</h2>
           <p ref="subtitle" class="hero-lead mb-8">{{ heroLead }}</p>

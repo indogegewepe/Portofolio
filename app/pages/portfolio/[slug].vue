@@ -4,11 +4,9 @@
       <v-row justify="center">
         <v-col cols="12" lg="10">
           <v-card variant="text" class="hero-card mb-6" data-reveal-section>
-              <div class="w-full text-right md:text-left" data-reveal-item>
-                <v-btn prepend-icon="mdi-arrow-left" variant="outlined" color="primary" class="text-none" @click="router.back()">
-                  {{ t('projects.back') }}
-                </v-btn>
-              </div>
+            <v-btn prepend-icon="mdi-arrow-left" variant="outlined" color="primary" class="text-none" @click="router.back()" data-reveal-item>
+              {{ t('projects.back') }}
+            </v-btn>
 
             <h1 class="detail-title mb-2" data-reveal-item>{{ projectTitle }}</h1>
             <p class="detail-lead mb-4" data-reveal-item>{{ projectDescription }}</p>

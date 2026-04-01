@@ -15,7 +15,9 @@
     "toggleLabel": "Switch language"
   },
   "theme": {
-    "toggleLabel": "Switch theme"
+    "toggleLabel": "Switch theme",
+    "dark": "Dark",
+    "light": "Light"
   },
   "home": {
     "availability": "Available for freelance and full-time",

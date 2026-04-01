@@ -15,7 +15,9 @@
     "toggleLabel": "Ganti bahasa"
   },
   "theme": {
-    "toggleLabel": "Ganti tema"
+    "toggleLabel": "Ganti tema",
+    "dark": "Dark",
+    "light": "Light"
   },
   "home": {
     "availability": "Tersedia untuk freelance dan full-time",
