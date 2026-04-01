@@ -5,7 +5,7 @@
       <h2 class="text-xl mt-4">Memuat Aplikasi...</h2>
     </div>
 
-    <div v-show="!loading">
+    <div v-else>
       <v-btn
         :icon="theme.current.value.dark ? 'mdi-weather-night' : 'mdi-weather-sunny'"
         @click="toggleTheme"

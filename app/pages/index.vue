@@ -251,7 +251,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from "vue"
+import { ref, onMounted, onUnmounted, nextTick } from "vue"
 import { gsap } from "gsap"
 import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
@@ -465,40 +465,51 @@ const scrollToElement = (id: string) => {
   if (el) el.scrollIntoView({ behavior: 'smooth' });
 }
 
-onMounted(() => {
-  scrambleTweens.value = [
-    gsap.to(title.value, {
-      duration: 5,
-      scrambleText: {
-        text: "Full-Stack Developer",
-        chars: "lowerCase",
-        revealDelay: 0.5,
-      },
-      ease: "power3",
-    }),
-    gsap.to(subtitle.value, {
-      duration: 5,
-      scrambleText: {
-        text: "Full Stack Developer dengan pengalaman membangun aplikasi web menggunakan Nuxt.js, Node.js, dan Express.js. Berpengalaman dalam pengembangan RESTful API, desain database, autentikasi JWT, serta deployment aplikasi di Google Cloud Platform.",
-        chars: "lowerCase",
-        revealDelay: 0.5,
-      },
-      ease: "power3",
-    })
-  ]
+onMounted(async () => {
+  await nextTick()
 
-  ctx.value = gsap.context((context) => {
+  if (title.value) {
+    scrambleTweens.value.push(
+      gsap.to(title.value, {
+        duration: 5,
+        scrambleText: {
+          text: "Full-Stack Developer",
+          chars: "lowerCase",
+          revealDelay: 0.5,
+        },
+        ease: "power3",
+      })
+    )
+  }
+
+  if (subtitle.value) {
+    scrambleTweens.value.push(
+      gsap.to(subtitle.value, {
+        duration: 5,
+        scrambleText: {
+          text: "Full Stack Developer dengan pengalaman membangun aplikasi web menggunakan Nuxt.js, Node.js, dan Express.js. Berpengalaman dalam pengembangan RESTful API, desain database, autentikasi JWT, serta deployment aplikasi di Google Cloud Platform.",
+          chars: "lowerCase",
+          revealDelay: 0.5,
+        },
+        ease: "power3",
+      })
+    )
+  }
+
+  ctx.value = gsap.context(() => {
     const logoEl = logoRef.value?.$el ?? logoRef.value
 
-    gsap.set(mainRef.value, { perspective: 1000 })
+    if (mainRef.value) {
+      gsap.set(mainRef.value, { perspective: 1000 })
+    }
 
-    const xTo = gsap.quickTo(outerRef.value, "rotationY", { duration: 0.6, ease: "power3" })
-    const yTo = gsap.quickTo(outerRef.value, "rotationX", { duration: 0.6, ease: "power3" })
-    const logoX = gsap.quickTo(logoEl, "x", { duration: 0.6, ease: "power3" })
-    const logoY = gsap.quickTo(logoEl, "y", { duration: 0.6, ease: "power3" })
+    const xTo = outerRef.value ? gsap.quickTo(outerRef.value, "rotationY", { duration: 0.6, ease: "power3" }) : null
+    const yTo = outerRef.value ? gsap.quickTo(outerRef.value, "rotationX", { duration: 0.6, ease: "power3" }) : null
+    const logoX = logoEl ? gsap.quickTo(logoEl, "x", { duration: 0.6, ease: "power3" }) : null
+    const logoY = logoEl ? gsap.quickTo(logoEl, "y", { duration: 0.6, ease: "power3" }) : null
 
     const handleMove = ({ clientX, clientY }: PointerEvent) => {
-      if (!mainRef.value) return
+      if (!mainRef.value || !xTo || !yTo || !logoX || !logoY) return
       const { left, top, width, height } = mainRef.value!.getBoundingClientRect()
       const xRel = (clientX - left) / width
       const yRel = (clientY - top)  / height
@@ -509,6 +520,7 @@ onMounted(() => {
     }
 
     const handleLeave = () => {
+      if (!xTo || !yTo || !logoX || !logoY) return
       yTo(0); xTo(0); logoX(0); logoY(0)
     }
 
@@ -535,11 +547,13 @@ onMounted(() => {
       })
     })
 
+    requestAnimationFrame(() => ScrollTrigger.refresh())
+
     return () => {
       el?.removeEventListener("pointermove", handleMove)
       el?.removeEventListener("pointerleave", handleLeave)
     }
-  }, mainRef.value || undefined)
+  })
 })
 
 onUnmounted(() => {

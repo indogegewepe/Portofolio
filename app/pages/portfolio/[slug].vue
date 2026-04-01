@@ -3,7 +3,7 @@
     <v-container class="py-8 py-md-12">
       <v-row justify="center">
         <v-col cols="12" lg="10">
-          <section class="hero-card mb-6" data-reveal-section>
+          <v-card variant="text" class="hero-card mb-6" data-reveal-section>
             <div class="d-flex flex-wrap justify-space-between align-center ga-3 mb-5" data-reveal-item>
               <v-btn prepend-icon="mdi-arrow-left" variant="outlined" color="primary" class="text-none" @click="router.back()">
                 Back to Portfolio
@@ -22,7 +22,7 @@
                 {{ stack }}
               </v-chip>
             </div>
-          </section>
+          </v-card>
 
           <v-card class="markdown-card pa-6 pa-md-10" variant="text" data-reveal-section>
             <div v-if="content" class="markdown-body" v-html="content" data-reveal-item />
@@ -162,9 +162,8 @@ onUnmounted(() => {
 }
 
 .hero-card {
-  border-radius: 1rem;
-  border: 1px solid rgba(var(--v-theme-primary), 0.24);
-  background: color-mix(in srgb, rgb(var(--v-theme-surface)) 84%, rgb(var(--v-theme-primary)) 16%);
+  border: 1px solid rgba(var(--v-theme-primary), 0.22);
+  background: color-mix(in srgb, rgb(var(--v-theme-surface)) 92%, rgb(var(--v-theme-primary)) 8%);
   backdrop-filter: blur(2px);
   padding: 1.25rem;
 }
@@ -186,7 +185,6 @@ onUnmounted(() => {
 }
 
 .markdown-card {
-  border-radius: 1rem;
   border: 1px solid rgba(var(--v-theme-primary), 0.22);
   background: color-mix(in srgb, rgb(var(--v-theme-surface)) 92%, rgb(var(--v-theme-primary)) 8%);
 }
