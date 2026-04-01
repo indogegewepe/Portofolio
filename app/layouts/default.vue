@@ -12,7 +12,7 @@
       </div>
     </div>
 
-    <div v-else>
+    <div :class="['layout-content', { 'layout-content--loading': loading }]">
       <v-btn
         :icon="theme.current.value.dark ? 'mdi-weather-night' : 'mdi-weather-sunny'"
         @click="toggleTheme"
@@ -124,10 +124,17 @@
 }
 
 .loader-shell {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
   min-height: 100vh;
   display: grid;
   place-items: center;
   padding: 1.25rem;
+}
+
+.layout-content--loading {
+  visibility: hidden;
 }
 
 .loader-editorial {

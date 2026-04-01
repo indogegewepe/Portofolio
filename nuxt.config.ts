@@ -11,6 +11,23 @@ export default defineNuxtConfig({
     '@pinia/nuxt'
   ],
   vite: {
+    plugins: [
+      {
+        name: 'fix-windows-malformed-fs-path',
+        configureServer(server) {
+          server.middlewares.use((req, res, next) => {
+            const url = req.url
+            if (url?.includes('/_nuxt/@fsD:/')) {
+              res.statusCode = 302
+              res.setHeader('Location', url.replace('/_nuxt/@fsD:/', '/_nuxt/@fs/D:/'))
+              res.end()
+              return
+            }
+            next()
+          })
+        },
+      },
+    ],
     optimizeDeps: {
       include: [
         'gsap',
@@ -27,13 +44,15 @@ export default defineNuxtConfig({
   },
 
   css: [
-    'assets/styles/layers.css',
     'vuetify/styles',
+    '@mdi/font/css/materialdesignicons.css',
+    'assets/styles/layers.css',
     'assets/styles/tailwind.css',
   ],
 
   vuetify: {
     moduleOptions: {
+      disableVuetifyStyles: true,
       ssrClientHints: {
         reloadOnFirstRequest: false,
         viewportSize: true,
