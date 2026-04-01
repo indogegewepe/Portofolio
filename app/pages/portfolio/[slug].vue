@@ -6,7 +6,7 @@
           <v-card variant="text" class="hero-card mb-6" data-reveal-section>
               <div class="w-full text-right md:text-left" data-reveal-item>
                 <v-btn prepend-icon="mdi-arrow-left" variant="outlined" color="primary" class="text-none" @click="router.back()">
-                  Back to Portfolio
+                  {{ t('projects.back') }}
                 </v-btn>
               </div>
 
@@ -24,7 +24,7 @@
             <div v-if="content" class="markdown-body" v-html="content" data-reveal-item />
             <div v-else class="empty-state" data-reveal-item>
               <v-icon size="48">mdi-file-document-outline</v-icon>
-              <p class="mt-4 text-medium-emphasis">Data tidak ditemukan.</p>
+              <p class="mt-4 text-medium-emphasis">{{ t('projects.empty') }}</p>
             </div>
           </v-card>
         </v-col>
@@ -37,50 +37,83 @@
 import { marked } from "marked"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
-import { onMounted, onUnmounted, ref } from "vue"
+import { computed, onMounted, onUnmounted, ref } from "vue"
 import { useRoute, useRouter } from "vue-router"
 
 gsap.registerPlugin(ScrollTrigger)
 
+const { t } = useI18n()
+
 const route = useRoute()
 const router = useRouter()
 
-const slug = String(route.params.slug || "")
-const apiReadmeUrl = `https://api.github.com/repos/indogegewepe/${slug}/readme`
+const slug = computed(() => String(route.params.slug || ""))
+const apiReadmeUrl = computed(() => `https://api.github.com/repos/indogegewepe/${slug.value}/readme`)
 const ctx = ref<gsap.Context | null>(null)
 
-const projectMeta: Record<string, { title: string, desc: string, stack: string[] }> = {
-  skripsiku: {
-    title: "UAD Course Scheduler",
-    desc: "Web-Based Academic Scheduling System with Dynamic Constraints.",
-    stack: ["Nuxt.js", "FastAPI", "Supabase"]
+type ProjectMeta = { title: string, desc: string, stack: string[], slug: string }
+
+const projectCatalog = computed(() => [
+  {
+    title: t('home.showcase.projects.0.title'),
+    desc: t('home.showcase.projects.0.desc'),
+    stack: [
+      t('home.showcase.projects.0.stack.0'),
+      t('home.showcase.projects.0.stack.1'),
+      t('home.showcase.projects.0.stack.2'),
+    ],
+    slug: 'skripsiku',
   },
-  "Bot-Whatsapp": {
-    title: "WhatsApp Nutrition Bot",
-    desc: "Bot WhatsApp untuk informasi nutrisi makanan secara cepat dan praktis.",
-    stack: ["WWeb.js", "Google Translate API", "QR Code Terminal"]
+  {
+    title: t('home.showcase.projects.1.title'),
+    desc: t('home.showcase.projects.1.desc'),
+    stack: [
+      t('home.showcase.projects.1.stack.0'),
+      t('home.showcase.projects.1.stack.1'),
+      t('home.showcase.projects.1.stack.2'),
+    ],
+    slug: 'Bot-Whatsapp',
   },
-  GameDev: {
-    title: "Find The Different",
-    desc: "Game edukasi interaktif untuk anak-anak.",
-    stack: ["Unity", "C#"]
+  {
+    title: t('home.showcase.projects.2.title'),
+    desc: t('home.showcase.projects.2.desc'),
+    stack: [
+      t('home.showcase.projects.2.stack.0'),
+      t('home.showcase.projects.2.stack.1'),
+    ],
+    slug: 'GameDev',
   },
-  Wonosobo: {
-    title: "Web PHP CRUD",
-    desc: "Website PHP native dengan fitur CRUD dan export PDF.",
-    stack: ["PHP", "MySQL", "Bootstrap"]
+  {
+    title: t('home.showcase.projects.3.title'),
+    desc: t('home.showcase.projects.3.desc'),
+    stack: [
+      t('home.showcase.projects.3.stack.0'),
+      t('home.showcase.projects.3.stack.1'),
+      t('home.showcase.projects.3.stack.2'),
+    ],
+    slug: 'Wonosobo',
   },
-  "Supra-X-125": {
-    title: "Bot Discord",
-    desc: "Discord music bot untuk kebutuhan komunitas server.",
-    stack: ["Discord.js", "Distube", "JavaScript"]
+  {
+    title: t('home.showcase.projects.4.title'),
+    desc: t('home.showcase.projects.4.desc'),
+    stack: [
+      t('home.showcase.projects.4.stack.0'),
+      t('home.showcase.projects.4.stack.1'),
+      t('home.showcase.projects.4.stack.2'),
+    ],
+    slug: 'Supra-X-125',
   },
-  "View-saved-wifi-password": {
-    title: "View Saved Wifi",
-    desc: "Script Python sederhana untuk membaca saved WiFi profile di Windows.",
-    stack: ["Windows", "Python"]
-  }
-}
+  {
+    title: t('home.showcase.projects.5.title'),
+    desc: t('home.showcase.projects.5.desc'),
+    stack: [
+      t('home.showcase.projects.5.stack.0'),
+      t('home.showcase.projects.5.stack.1'),
+    ],
+    slug: 'View-saved-wifi-password',
+  },
+])
+const currentProject = computed(() => projectCatalog.value.find(project => project.slug === slug.value))
 
 const { data } = await useFetch<string>(apiReadmeUrl, {
   headers: {
@@ -94,9 +127,9 @@ const content = computed(() => {
   return marked.parse(data.value as string)
 })
 
-const projectTitle = computed(() => projectMeta[slug]?.title || slug)
-const projectDescription = computed(() => projectMeta[slug]?.desc || "Repository detail dan dokumentasi project.")
-const projectStack = computed(() => projectMeta[slug]?.stack || [])
+const projectTitle = computed(() => currentProject.value?.title || t('projects.fallbackTitle'))
+const projectDescription = computed(() => currentProject.value?.desc || t('projects.fallbackDescription'))
+const projectStack = computed(() => currentProject.value?.stack || [])
 
 onMounted(() => {
   ctx.value = gsap.context(() => {

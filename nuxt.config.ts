@@ -5,6 +5,7 @@ export default defineNuxtConfig({
 
   // ssr: false,
   modules: [
+    '@nuxtjs/i18n',
     '@nuxt/fonts',
     'vuetify-nuxt-module',
     '@nuxt/eslint',
@@ -114,8 +115,28 @@ export default defineNuxtConfig({
     },
   },
 
-  // i18n: {
-  //   defaultLocale: 'en',
-  //   vueI18n: './i18n.config.ts',
-  // },
+  i18n: {
+    strategy: 'no_prefix',
+    defaultLocale: 'id',
+    lazy: true,
+    langDir: 'locales',
+    vueI18n: './i18n.config.ts',
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: 'i18n_redirected',
+      redirectOn: 'root',
+    },
+    locales: [
+      {
+        code: 'id',
+        language: 'id-ID',
+        file: 'id.json',
+      },
+      {
+        code: 'en',
+        language: 'en-US',
+        file: 'en.json',
+      },
+    ],
+  },
 })

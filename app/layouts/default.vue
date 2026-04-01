@@ -4,8 +4,8 @@
       <div class="app-atmosphere-grain" aria-hidden="true" />
       <div class="loader-editorial">
         <p ref="monoRef" class="loader-mono">BU</p>
-        <h2 ref="nameRef" class="loader-name">Bagas Uwaidha</h2>
-        <p ref="tagRef" class="loader-tag">Building fast, thoughtful web interfaces</p>
+        <h2 ref="nameRef" class="loader-name">{{ t('loader.name') }}</h2>
+        <p ref="tagRef" class="loader-tag">{{ t('loader.tag') }}</p>
         <div class="loader-rule-wrap" aria-hidden="true">
           <span ref="ruleRef" class="loader-rule" />
         </div>
@@ -13,13 +13,25 @@
     </div>
 
     <div :class="['layout-content', { 'layout-content--loading': loading }]">
-      <v-btn
-        :icon="theme.current.value.dark ? 'mdi-weather-night' : 'mdi-weather-sunny'"
-        @click="toggleTheme"
-        color="primary"
-        variant="tonal"
-        class="fixed top-0 left-0 z-10 border ma-4 backdrop-blur-sm elevation-4"
-      />
+      <div class="fixed top-0 left-0 z-10 ma-4 d-flex ga-2">
+        <v-btn
+          :icon="theme.current.value.dark ? 'mdi-weather-night' : 'mdi-weather-sunny'"
+          :aria-label="t('theme.toggleLabel')"
+          @click="toggleTheme"
+          color="primary"
+          variant="tonal"
+          class="border backdrop-blur-sm elevation-4"
+        />
+        <v-btn
+          :aria-label="t('language.toggleLabel')"
+          @click="toggleLocale"
+          color="primary"
+          variant="tonal"
+          class="border backdrop-blur-sm elevation-4 text-none"
+        >
+          {{ locale.toUpperCase() }}
+        </v-btn>
+      </div>
       <v-container fluid class="app-atmosphere">
         <div class="app-atmosphere-grain" aria-hidden="true" />
         <slot />
@@ -42,6 +54,7 @@
 
   const loading = ref(true)
   const theme = useTheme()
+  const { t, locale, setLocale } = useI18n()
   const loaderRoot = ref<HTMLElement | null>(null)
   const monoRef = ref<HTMLElement | null>(null)
   const nameRef = ref<HTMLElement | null>(null)
@@ -111,6 +124,11 @@
     const nextTheme = theme.global.current.value.dark ? 'light' : 'dark'
     theme.change(nextTheme)
     localStorage.setItem('theme', nextTheme)
+  }
+
+  const toggleLocale = async () => {
+    const nextLocale = locale.value === 'id' ? 'en' : 'id'
+    await setLocale(nextLocale)
   }
 
   const scrollToTop = () => {

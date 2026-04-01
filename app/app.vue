@@ -27,12 +27,19 @@
 
 <script setup lang="ts">
 const { $snackbar } = useNuxtApp()
+const { t, locale } = useI18n()
+
+useHead({
+  htmlAttrs: {
+    lang: locale,
+  },
+})
 
 useSeoMeta({
-  title: 'Bagas Uwaidha',
-  ogTitle: 'Bagas Uwaidha - Software Developer',
-  description: "Bagas Uwaidha's Personal Portfolio",
-  ogDescription: 'Full Stack Developer berpengalaman dalam membangun aplikasi web menggunakan Nuxt.js, Node.js, dan Express.js. Spesialis dalam pengembangan frontend modern dan cloud architecture.',
+  title: () => t('seo.title'),
+  ogTitle: () => t('seo.ogTitle'),
+  description: () => t('seo.description'),
+  ogDescription: () => t('seo.ogDescription'),
   ogImage: 'https://bagasuwaidha.my.id/bu.png',
   twitterCard: 'summary_large_image',
 })

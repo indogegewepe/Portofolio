@@ -8,16 +8,15 @@ const props = defineProps({
 })
 
 const theme = useTheme()
-
-const handleError = () => clearError({ redirect: '/' })
+const { t } = useI18n()
 
 const statusCode = computed(() => props.error?.statusCode ?? 500)
-const statusMessage = computed(() => props.error?.statusMessage || 'Unexpected Error')
+const statusMessage = computed(() => props.error?.statusMessage || t('error.unexpected'))
 const detailMessage = computed(() => {
   if (statusCode.value === 404) {
-    return 'Halaman yang kamu cari tidak ditemukan. Kemungkinan URL berubah atau halaman sudah dipindahkan.'
+    return t('error.notFound')
   }
-  return 'Terjadi kesalahan saat memproses halaman ini. Coba muat ulang, atau kembali ke beranda.'
+  return t('error.generic')
 })
 
 const refreshPage = () => {
@@ -45,10 +44,10 @@ onMounted(() => {
 
           <div class="button-group d-flex flex-wrap">
             <v-btn color="primary" variant="flat" prepend-icon="mdi-home" size="large" class="text-none" :to="'/'">
-              Kembali ke Home
+              {{ t('error.home') }}
             </v-btn>
             <v-btn color="primary" variant="outlined" prepend-icon="mdi-refresh" size="large" class="text-none" @click="refreshPage">
-              Coba Lagi
+              {{ t('error.retry') }}
             </v-btn>
           </div>
         </v-card>

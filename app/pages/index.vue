@@ -5,23 +5,23 @@
         <v-col cols="12" md="7" class="mb-8 mb-md-0" data-reveal-item>
           <div class="w-full text-right md:text-left">
             <v-chip color="primary" variant="tonal" size="small">
-              Available for freelance and full-time
+              {{ t('home.availability') }}
             </v-chip>
           </div>
-          <h1 class="hero-name mb-4">Bagas Tsiqoh Fiqyan Uwaidha</h1>
-          <h2 ref="title" class="hero-role mb-3"/>
-          <p ref="subtitle" class="hero-lead mb-8"/>
+          <h1 class="hero-name mb-4">{{ t('home.hero.name') }}</h1>
+          <h2 ref="title" class="hero-role mb-3">{{ heroTitle }}</h2>
+          <p ref="subtitle" class="hero-lead mb-8">{{ heroLead }}</p>
           <div class="d-flex flex-wrap ga-3 mb-5">
             <v-btn prepend-icon="mdi-view-carousel" color="primary" variant="flat" size="large" class="text-none" @click="scrollToElement('projects')">
-              View Projects
+              {{ t('home.cta.projects') }}
             </v-btn>
             <v-btn prepend-icon="mdi-email" color="primary" variant="outlined" size="large" class="text-none" @click="scrollToElement('contact')">
-              Contact Me
+              {{ t('home.cta.contact') }}
             </v-btn>
           </div>
           <div class="d-flex ga-2">
-            <v-btn icon="mdi-github" color="primary" variant="tonal" href="https://github.com/indogegewepe" target="_blank" />
-            <v-btn icon="mdi-linkedin" color="primary" variant="tonal" href="https://www.linkedin.com/in/bagas-uwaidha/" target="_blank" />
+            <v-btn :aria-label="t('home.social.github')" icon="mdi-github" color="primary" variant="tonal" href="https://github.com/indogegewepe" target="_blank" />
+            <v-btn :aria-label="t('home.social.linkedin')" icon="mdi-linkedin" color="primary" variant="tonal" href="https://www.linkedin.com/in/bagas-uwaidha/" target="_blank" />
           </div>
         </v-col>
 
@@ -44,8 +44,8 @@
 
       <v-row class="section-block" data-reveal-section>
         <v-col cols="12" data-reveal-item>
-          <h2 class="section-title">Tentang Saya</h2>
-          <p class="section-caption">Software Developer</p>
+          <h2 class="section-title">{{ t('home.about.title') }}</h2>
+          <p class="section-caption">{{ t('home.about.caption') }}</p>
         </v-col>
         <v-col cols="12" md="4" data-reveal-item>
           <v-card
@@ -68,7 +68,7 @@
 
       <v-row class="section-block" data-reveal-section>
         <v-col cols="12" data-reveal-item>
-          <h2 class="section-title">Skills</h2>
+          <h2 class="section-title">{{ t('home.skills.title') }}</h2>
         </v-col>
         <v-col v-for="(tag, i) in tags" :key="i" cols="12" md="6" lg="4" data-reveal-item>
           <v-card class="panel-card pa-4 h-full" variant="text">
@@ -90,7 +90,7 @@
 
       <v-row id="projects" class="section-block" data-reveal-section>
         <v-col cols="12" data-reveal-item>
-          <h2 class="section-title">Project Showcase</h2>
+          <h2 class="section-title">{{ t('home.showcase.title') }}</h2>
         </v-col>
         <v-col
           v-for="(value, i) in showCase"
@@ -126,22 +126,24 @@
                 :href="value.demo"
                 class="flex-1 text-none"
                 target="_blank"
-                text="Demo"
                 variant="flat"
                 color="primary"
                 @click.stop
-              />
+              >
+                {{ t('home.showcase.actions.demo') }}
+              </v-btn>
               <v-btn
                 v-if="value.github"
                 prepend-icon="mdi-open-in-new"
                 :href="value.github"
                 class="flex-1 text-none"
                 target="_blank"
-                text="Source Code"
                 variant="tonal"
                 color="primary"
                 @click.stop
-              />
+              >
+                {{ t('home.showcase.actions.source') }}
+              </v-btn>
             </template>
           </v-card>
         </v-col>
@@ -149,7 +151,7 @@
 
       <v-row class="section-block" data-reveal-section>
         <v-col cols="12" data-reveal-item>
-          <h2 class="section-title">Interactive Skills</h2>
+          <h2 class="section-title">{{ t('home.interactiveSkills.title') }}</h2>
         </v-col>
         <v-col cols="12" md="4" v-for="(value, i) in interactiveSkills" :key="i" data-reveal-item>
           <v-card class="panel-card pa-4" variant="text">
@@ -171,7 +173,7 @@
 
       <v-row class="section-block" data-reveal-section>
         <v-col cols="12" data-reveal-item>
-          <h2 class="section-title">Pengalaman Kerja</h2>
+          <h2 class="section-title">{{ t('home.experience.title') }}</h2>
         </v-col>
         <v-col cols="12" v-for="(value, i) in experience" :key="i" data-reveal-item>
           <v-card class="panel-card pa-5" variant="text">
@@ -191,19 +193,17 @@
 
       <v-row class="section-block" data-reveal-section>
         <v-col cols="12" data-reveal-item>
-          <h2 class="section-title">Pendidikan</h2>
+          <h2 class="section-title">{{ t('home.education.title') }}</h2>
         </v-col>
         <v-col cols="12" data-reveal-item>
           <v-card class="panel-card pa-5" variant="text">
-            <h3 class="text-h6 font-weight-bold mb-3">Universitas Ahmad Dahlan</h3>
+            <h3 class="text-h6 font-weight-bold mb-3">{{ t('home.education.school') }}</h3>
             <div class="d-flex justify-space-between align-center mb-3 flex-wrap ga-2">
-              <p class="text-body-1 text-primary font-weight-medium">S1 Informatika · GPA : 3,71</p>
-              <p class="text-caption text-medium-emphasis">2020 - 2025</p>
+              <p class="text-body-1 text-primary font-weight-medium">{{ t('home.education.degree') }} · {{ t('home.education.gpa') }}</p>
+              <p class="text-caption text-medium-emphasis">{{ t('home.education.period') }}</p>
             </div>
             <ul class="pl-5">
-              <li class="text-body-2 mb-2">Peserta Bangkit Academy 2024 - Cloud Computing Learning Path</li>
-              <li class="text-body-2 mb-2">Mempelajari Google Cloud Platform, Firestore, dan deployment App Engine</li>
-              <li class="text-body-2 mb-2">Skripsi: Optimasi Penjadwalan Universitas menggunakan Grey Wolf Optimizer</li>
+              <li v-for="(item, i) in educationItems" :key="i" class="text-body-2 mb-2">{{ item }}</li>
             </ul>
           </v-card>
         </v-col>
@@ -211,7 +211,7 @@
 
       <v-row id="contact" class="section-block" data-reveal-section>
         <v-col cols="12" data-reveal-item>
-          <h2 class="section-title">Contact</h2>
+          <h2 class="section-title">{{ t('home.contact.title') }}</h2>
         </v-col>
         <v-col cols="12" md="6" data-reveal-item>
           <v-card class="panel-card pa-2" variant="text">
@@ -232,7 +232,7 @@
         <v-col cols="12" md="6" data-reveal-item>
           <v-card class="panel-card pa-6" variant="text" color="primary">
             <p class="text-body-1 mb-4">
-              Saya selalu terbuka untuk diskusi mengenai proyek baru, peluang kerja, atau sekadar berbagi insight seputar teknologi web.
+              {{ t('home.contact.message') }}
             </p>
             <v-btn
               block
@@ -241,7 +241,7 @@
               href="mailto:bagasfiqyan@gmail.com"
               class="text-none"
             >
-              Kirim Pesan
+              {{ t('home.contact.button') }}
             </v-btn>
           </v-card>
         </v-col>
@@ -251,7 +251,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted, nextTick } from "vue"
+import { computed, nextTick, onMounted, onUnmounted, ref, watch } from "vue"
 import { gsap } from "gsap"
 import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
@@ -259,6 +259,8 @@ import { SplitText } from "gsap/SplitText"
 import profileImage from "~/assets/profile.png"
 
 gsap.registerPlugin(ScrambleTextPlugin, SplitText, ScrollTrigger)
+
+const { t, locale } = useI18n()
 
 const mainRef   = ref<HTMLElement | null>(null)
 const outerRef  = ref<HTMLElement | null>(null)
@@ -269,211 +271,270 @@ const subtitle  = ref<HTMLElement | null>(null)
 const ctx = ref<gsap.Context | null>(null)
 const scrambleTweens = ref<gsap.core.Tween[]>([])
 
-const stats = [
-  { label: "Spesialisasi", value: "Frontend Developer", sub: "Vue · Nuxt.js · TypeScript · Modern Web Architecture · Pinia" },
-  { label: "Background", value: "Informatika", sub: "Full-stack & Cloud Computing" },
-  { label: "Hobby", value: "Game · Anime · Comic", sub: "Minecraft · Black Clover · Solo Leveling" }
-]
+type SkillGroup = { category: string, children: { name: string }[] }
+type ShowcaseItem = { title: string, desc: string, img: string, stack: string[], demo: string, github: string, slug: string }
+type ExperienceItem = { company: string, jobDesc: string, startDate: string, endDate: string, jobList: string[] }
+type ContactItem = { icon: string, title: string, subtitle: string, href: string, target: string | null }
 
-const paragraphs = [
-  "Saya adalah seorang Software Developer berlatar belakang Informatika dengan fokus utama pada Frontend Development. Saya membangun aplikasi web modern yang cepat, interaktif, dan skalabel menggunakan Vue dan Nuxt sebagai stack utama.",
-  "Selain frontend, saya juga berpengalaman dalam backend development dan cloud architecture — mulai dari membangun RESTful API dengan Node.js, Express.js, dan FastAPI, hingga deployment menggunakan Google Cloud Platform.",
-  "Dalam beberapa proyek saya terlibat penuh dalam pengembangan full-stack system: dari perancangan database schema, pengembangan API, hingga integrasi frontend. Saya juga pernah mengembangkan sistem optimasi penjadwalan menggunakan algoritma Grey Wolf Optimizer — yang mencerminkan ketertarikan saya pada problem solving berbasis algoritma.",
-  "Saat ini saya terus mengembangkan diri dalam frontend engineering, web performance, dan scalable architecture — dengan tujuan membangun produk digital yang tidak hanya berfungsi optimal, tetapi juga memberikan pengalaman pengguna yang luar biasa."
-];
-
-const tags = [
+const stats = computed(() => [
   {
-    category: "Frontend",
+    label: t('home.stats.0.label'),
+    value: t('home.stats.0.value'),
+    sub: t('home.stats.0.sub'),
+  },
+  {
+    label: t('home.stats.1.label'),
+    value: t('home.stats.1.value'),
+    sub: t('home.stats.1.sub'),
+  },
+  {
+    label: t('home.stats.2.label'),
+    value: t('home.stats.2.value'),
+    sub: t('home.stats.2.sub'),
+  },
+])
+const paragraphs = computed(() => [
+  t('home.paragraphs.0'),
+  t('home.paragraphs.1'),
+  t('home.paragraphs.2'),
+  t('home.paragraphs.3'),
+])
+const tags = computed(() => [
+  {
+    category: t('home.skills.categories.0.category'),
     children: [
-      { name: "Vue.js" },
-      { name: "Nuxt.js" },
-      { name: "React" },
-      { name: "Next.js" },
-      { name: "TypeScript" },
-    ]
+      { name: t('home.skills.categories.0.children.0.name') },
+      { name: t('home.skills.categories.0.children.1.name') },
+      { name: t('home.skills.categories.0.children.2.name') },
+      { name: t('home.skills.categories.0.children.3.name') },
+      { name: t('home.skills.categories.0.children.4.name') },
+    ],
   },
   {
-    category: "Backend",
+    category: t('home.skills.categories.1.category'),
     children: [
-      { name: "Node.js" },
-      { name: "Express.js" },
-      { name: "Firestore" },
-      { name: "FastAPI" },
-      { name: "PostgreSQL" },
-      { name: "Strapi" }
-    ]
+      { name: t('home.skills.categories.1.children.0.name') },
+      { name: t('home.skills.categories.1.children.1.name') },
+      { name: t('home.skills.categories.1.children.2.name') },
+      { name: t('home.skills.categories.1.children.3.name') },
+      { name: t('home.skills.categories.1.children.4.name') },
+      { name: t('home.skills.categories.1.children.5.name') },
+    ],
   },
   {
-    category: "Styling",
+    category: t('home.skills.categories.2.category'),
     children: [
-      { name: "Tailwind" },
-      { name: "Bootstrap" },
-      { name: "Material UI" },
-      { name: "Aceternity" },
-      { name: "SCSS" },
-      { name: "GSAP" }
-    ]
+      { name: t('home.skills.categories.2.children.0.name') },
+      { name: t('home.skills.categories.2.children.1.name') },
+      { name: t('home.skills.categories.2.children.2.name') },
+      { name: t('home.skills.categories.2.children.3.name') },
+      { name: t('home.skills.categories.2.children.4.name') },
+      { name: t('home.skills.categories.2.children.5.name') },
+    ],
   },
   {
-    category: "Tools & Cloud",
+    category: t('home.skills.categories.3.category'),
     children: [
-      { name: "CachyOS" },
-      { name: "Google Cloud" },
-      { name: "Supabase" },
-      { name: "Firebase" },
-      { name: "AWS" },
-      { name: "Vercel" },
-      { name: "Netlify" }
-    ]
+      { name: t('home.skills.categories.3.children.0.name') },
+      { name: t('home.skills.categories.3.children.1.name') },
+      { name: t('home.skills.categories.3.children.2.name') },
+      { name: t('home.skills.categories.3.children.3.name') },
+      { name: t('home.skills.categories.3.children.4.name') },
+      { name: t('home.skills.categories.3.children.5.name') },
+      { name: t('home.skills.categories.3.children.6.name') },
+    ],
   },
   {
-    category: "Other",
+    category: t('home.skills.categories.4.category'),
     children: [
-      { name: "Unity" },
-      { name: "Git" },
-      { name: "Figma" },
-      { name: "REST API" },
-      { name: "ERP Software" }
-    ]
-  }
-];
-
-const showCase = [
+      { name: t('home.skills.categories.4.children.0.name') },
+      { name: t('home.skills.categories.4.children.1.name') },
+      { name: t('home.skills.categories.4.children.2.name') },
+      { name: t('home.skills.categories.4.children.3.name') },
+      { name: t('home.skills.categories.4.children.4.name') },
+    ],
+  },
+])
+const showCase = computed(() => [
   {
-    title: "UAD Course Scheduler",
-    desc: "Web-Based Academic Scheduling System with Dynamic Constraints",
-    img: "https://raw.githubusercontent.com/indogegewepe/Skripsiku/refs/heads/master/fr%20skripsi.png",
-    stack: ["Nuxt.js", "FastAPI", "Supabase"],
-    demo: "",
-    github: "https://github.com/indogegewepe/Skripsiku",
-    slug: "skripsiku"
+    title: t('home.showcase.projects.0.title'),
+    desc: t('home.showcase.projects.0.desc'),
+    img: t('home.showcase.projects.0.img'),
+    stack: [
+      t('home.showcase.projects.0.stack.0'),
+      t('home.showcase.projects.0.stack.1'),
+      t('home.showcase.projects.0.stack.2'),
+    ],
+    demo: '',
+    github: 'https://github.com/indogegewepe/Skripsiku',
+    slug: 'skripsiku',
   },
   {
-    title: "WhatsApp Nutrition Bot",
-    desc: "WhatsApp Nutrition Bot adalah aplikasi berbasis WhatsApp yang memberikan informasi nutrisi dari makanan yang dimasukkan pengguna. Bot ini dirancang untuk membantu pengguna memantau asupan kalori dan nutrisi harian mereka dengan mudah.",
-    img: "",
-    stack: ["WWeb.js", "Google Translate API", "QR Code Terminal"],
-    demo: "",
-    github: "https://github.com/indogegewepe/Bot-Whatsapp",
-    slug: "Bot-Whatsapp"
+    title: t('home.showcase.projects.1.title'),
+    desc: t('home.showcase.projects.1.desc'),
+    img: '',
+    stack: [
+      t('home.showcase.projects.1.stack.0'),
+      t('home.showcase.projects.1.stack.1'),
+      t('home.showcase.projects.1.stack.2'),
+    ],
+    demo: '',
+    github: 'https://github.com/indogegewepe/Bot-Whatsapp',
+    slug: 'Bot-Whatsapp',
   },
   {
-    title: "Find The Different",
-    desc: "Game edukasi interaktif yang dirancang untuk anak-anak",
-    img: "https://raw.githubusercontent.com/indogegewepe/GameDev/refs/heads/main/Assets/Home.jpg",
-    stack: ["Unity", "C#"],
-    demo: "https://github.com/indogegewepe/GameDev/raw/refs/heads/main/FindTheDifference.apk",
-    github: "https://github.com/indogegewepe/GameDev",
-    slug: "GameDev"
+    title: t('home.showcase.projects.2.title'),
+    desc: t('home.showcase.projects.2.desc'),
+    img: t('home.showcase.projects.2.img'),
+    stack: [
+      t('home.showcase.projects.2.stack.0'),
+      t('home.showcase.projects.2.stack.1'),
+    ],
+    demo: 'https://github.com/indogegewepe/GameDev/raw/refs/heads/main/FindTheDifference.apk',
+    github: 'https://github.com/indogegewepe/GameDev',
+    slug: 'GameDev',
   },
   {
-    title: "Web PHP CRUD",
-    desc: "Website PHP naitve dengan fungsionalitas CRUD dan download file pdf",
-    img: "https://raw.githubusercontent.com/indogegewepe/Wonosobo/main/assets/img/Untitled.png",
-    stack: ["PHP", "MySQL", "Bootstrap"],
-    demo: "",
-    github: "https://github.com/indogegewepe/Wonosobo",
-    slug: "Wonosobo"
+    title: t('home.showcase.projects.3.title'),
+    desc: t('home.showcase.projects.3.desc'),
+    img: t('home.showcase.projects.3.img'),
+    stack: [
+      t('home.showcase.projects.3.stack.0'),
+      t('home.showcase.projects.3.stack.1'),
+      t('home.showcase.projects.3.stack.2'),
+    ],
+    demo: '',
+    github: 'https://github.com/indogegewepe/Wonosobo',
+    slug: 'Wonosobo',
   },
   {
-    title: "Bot Discord",
-    desc: "Play song Bot Discord",
-    img: "",
-    stack: ["Discord.js", "Distube", "JavaScript"],
-    demo: "",
-    github: "https://github.com/indogegewepe/Supra-X-125",
-    slug: "Supra-X-125"
+    title: t('home.showcase.projects.4.title'),
+    desc: t('home.showcase.projects.4.desc'),
+    img: '',
+    stack: [
+      t('home.showcase.projects.4.stack.0'),
+      t('home.showcase.projects.4.stack.1'),
+      t('home.showcase.projects.4.stack.2'),
+    ],
+    demo: '',
+    github: 'https://github.com/indogegewepe/Supra-X-125',
+    slug: 'Supra-X-125',
   },
   {
-    title: "View Saved Wifi",
-    desc: "View saved wifi password on windows using simple code python",
-    img: "",
-    stack: ["Windows", "Python"],
-    demo: "",
-    github: "https://github.com/indogegewepe/View-saved-wifi-password",
-    slug: "View-saved-wifi-password"
+    title: t('home.showcase.projects.5.title'),
+    desc: t('home.showcase.projects.5.desc'),
+    img: '',
+    stack: [
+      t('home.showcase.projects.5.stack.0'),
+      t('home.showcase.projects.5.stack.1'),
+    ],
+    demo: '',
+    github: 'https://github.com/indogegewepe/View-saved-wifi-password',
+    slug: 'View-saved-wifi-password',
   },
-]
-
-const interactiveSkills = [
-  { title: "Frontend", value: 90, color: "primary" }, 
-  { title: "Backend", value: 60, color: "info" }, 
-  { title: "UI/UX Design", value: 75, color: "error"}
-]
-
-const contactItems = [
+])
+const interactiveSkills = computed(() => [
+  { title: t('home.interactiveSkills.items.0.title'), value: 90, color: 'primary' },
+  { title: t('home.interactiveSkills.items.1.title'), value: 60, color: 'info' },
+  { title: t('home.interactiveSkills.items.2.title'), value: 75, color: 'error' },
+])
+const contactItems = computed(() => [
   {
-    icon: "mdi-email",
-    title: "Email",
-    subtitle: "bagasuwaidha007@gmail.com",
-    href: "mailto:bagasuwaidha007@gmail.com",
-    target: undefined
-  },
-  {
-    icon: "mdi-whatsapp",
-    title: "WhatsApp",
-    subtitle: "+62 812-2786-8290",
-    href: "https://wa.me/6281227868290",
-    target: "_blank"
+    icon: 'mdi-email',
+    title: t('home.contact.items.0.title'),
+    subtitle: t('home.contact.items.0.subtitle'),
+    href: 'mailto:bagasuwaidha007@gmail.com',
+    target: null,
   },
   {
-    icon: "mdi-linkedin",
-    title: "LinkedIn",
-    subtitle: "bagasuwaidha",
-    href: "https://www.linkedin.com/in/bagas-uwaidha/",
-    target: "_blank"
+    icon: 'mdi-whatsapp',
+    title: t('home.contact.items.1.title'),
+    subtitle: t('home.contact.items.1.subtitle'),
+    href: t('home.contact.items.1.href'),
+    target: '_blank',
   },
   {
-    icon: "mdi-github",
-    title: "GitHub",
-    subtitle: "indogegewepe",
-    href: "https://github.com/indogegewepe",
-    target: "_blank"
-  }
-]
-
-const experience = [
-  { company: "CV Gama Putra Santosa", jobDesc: "Game Designer", startDate: "Sep 2024", endDate: "Des 2024", jobList: [
-    "Saya merancang dan membuat Game Design Document (GDD)",
-    "Saya membuat sketsa, mockup UI, konsep karakter dan lingkungan untuk mendukung pengembangan game",
-    "Saya bertanggung jawab atas konsep keseluruhan dan koordinasi tim"
-  ] },
-  { company: "CV Andita", jobDesc: "Full Stack Developer", startDate: "Jul 2025", endDate: "Aug 2025", jobList: [
-    "Merancang UI/UX aplikasi menggunakan Figma",
-    "Mengembangkan frontend aplikasi menggunakan Next.js",
-    "Menerapkan styling responsif menggunakan Tailwind CSS untuk memastikan tampilan optimal di berbagai perangkat.",
-    "Mengimplementasikan animasi dan interactive UI menggunakan Aceternity untuk meningkatkan user experience.",
-    "Membangun backend headless CMS menggunakan Strapi untuk manajemen konten dan integrasi API.",
-    "Mengintegrasikan frontend dengan REST API dari Strapi untuk pengelolaan data secara dinamis.",
-    "Melakukan deployment frontend menggunakan Vercel dengan optimasi build dan performa.",
-    "Melakukan deployment dan pengelolaan backend menggunakan Railway.",
-    "Melakukan testing, debugging, dan optimasi performa aplikasi web."
-  ] },
-  { company: "PT Fimosa Technology Indonesia", jobDesc: "Full Stack Developer", startDate: "Aug 2025", endDate: "Mar 2026", jobList: [
-    "Mengembangkan dan memelihara Backend dan Frontend produk milik perusahaan.",
-    "Merancang, mengimplementasikan dan mengoptimalkan database.",
-    "Memastikan keamanan aplikasi dan data pengguna.",
-    "Melakukan debugging dan pemecahan masalah teknis.",
-    "Mengoptimalkan performa aplikasi.",
-    "Menulis dokumentasi kode dan panduan teknis."
-  ] },
-]
+    icon: 'mdi-linkedin',
+    title: t('home.contact.items.2.title'),
+    subtitle: t('home.contact.items.2.subtitle'),
+    href: t('home.contact.items.2.href'),
+    target: '_blank',
+  },
+  {
+    icon: 'mdi-github',
+    title: t('home.contact.items.3.title'),
+    subtitle: t('home.contact.items.3.subtitle'),
+    href: t('home.contact.items.3.href'),
+    target: '_blank',
+  },
+])
+const experience = computed(() => [
+  {
+    company: t('home.experience.items.0.company'),
+    jobDesc: t('home.experience.items.0.jobDesc'),
+    startDate: t('home.experience.items.0.startDate'),
+    endDate: t('home.experience.items.0.endDate'),
+    jobList: [
+      t('home.experience.items.0.jobList.0'),
+      t('home.experience.items.0.jobList.1'),
+      t('home.experience.items.0.jobList.2'),
+    ],
+  },
+  {
+    company: t('home.experience.items.1.company'),
+    jobDesc: t('home.experience.items.1.jobDesc'),
+    startDate: t('home.experience.items.1.startDate'),
+    endDate: t('home.experience.items.1.endDate'),
+    jobList: [
+      t('home.experience.items.1.jobList.0'),
+      t('home.experience.items.1.jobList.1'),
+      t('home.experience.items.1.jobList.2'),
+      t('home.experience.items.1.jobList.3'),
+      t('home.experience.items.1.jobList.4'),
+      t('home.experience.items.1.jobList.5'),
+      t('home.experience.items.1.jobList.6'),
+      t('home.experience.items.1.jobList.7'),
+      t('home.experience.items.1.jobList.8'),
+    ],
+  },
+  {
+    company: t('home.experience.items.2.company'),
+    jobDesc: t('home.experience.items.2.jobDesc'),
+    startDate: t('home.experience.items.2.startDate'),
+    endDate: t('home.experience.items.2.endDate'),
+    jobList: [
+      t('home.experience.items.2.jobList.0'),
+      t('home.experience.items.2.jobList.1'),
+      t('home.experience.items.2.jobList.2'),
+      t('home.experience.items.2.jobList.3'),
+      t('home.experience.items.2.jobList.4'),
+      t('home.experience.items.2.jobList.5'),
+    ],
+  },
+])
+const educationItems = computed(() => [
+  t('home.education.items.0'),
+  t('home.education.items.1'),
+  t('home.education.items.2'),
+])
+const heroTitle = computed(() => t('home.hero.role'))
+const heroLead = computed(() => t('home.hero.lead'))
 
 const scrollToElement = (id: string) => {
   const el = document.getElementById(id);
   if (el) el.scrollIntoView({ behavior: 'smooth' });
 }
 
-onMounted(async () => {
-  await nextTick()
+const playHeroScramble = () => {
+  scrambleTweens.value.forEach(tween => tween.kill())
+  scrambleTweens.value = []
 
   if (title.value) {
     scrambleTweens.value.push(
       gsap.to(title.value, {
         duration: 2,
         scrambleText: {
-          text: "Full-Stack Developer",
+          text: heroTitle.value,
           chars: "lowerCase",
           revealDelay: 0.5,
         },
@@ -487,7 +548,7 @@ onMounted(async () => {
       gsap.to(subtitle.value, {
         duration: 2.5,
         scrambleText: {
-          text: "Full Stack Developer dengan pengalaman membangun aplikasi web menggunakan Nuxt.js, Node.js, dan Express.js. Berpengalaman dalam pengembangan RESTful API, desain database, autentikasi JWT, serta deployment aplikasi di Google Cloud Platform.",
+          text: heroLead.value,
           chars: "lowerCase",
           revealDelay: 0.5,
         },
@@ -495,6 +556,17 @@ onMounted(async () => {
       })
     )
   }
+}
+
+watch(locale, async () => {
+  await nextTick()
+  playHeroScramble()
+})
+
+onMounted(async () => {
+  await nextTick()
+
+  playHeroScramble()
 
   ctx.value = gsap.context(() => {
     const logoEl = logoRef.value?.$el ?? logoRef.value
