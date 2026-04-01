@@ -1,8 +1,7 @@
 <template>
   <v-app>
     <div v-if="loading" class="flex flex-col h-full items-center justify-center">
-      <v-icon size="80" class="mb-4">mdi-vuetify</v-icon>
-      <div class="spinner mb-4" />
+      <span class="loader"></span>
       <h2 class="text-xl mt-4">Memuat Aplikasi...</h2>
     </div>
 
@@ -55,16 +54,57 @@
 </script>
 
 <style scoped>
-.spinner {
+.loader {
   width: 48px;
   height: 48px;
-  border: 5px solid rgba(128,128,128,0.2);
-  border-top-color: rgb(var(--v-theme-primary));
   border-radius: 50%;
-  animation: spin 0.8s linear infinite;
+  display: inline-block;
+  position: relative;
+  border: 3px solid;
+  border-color: rgb(var(--v-theme-on-surface)) rgb(var(--v-theme-on-surface)) transparent transparent;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
 }
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
+.loader::after,
+.loader::before {
+  content: '';  
+  box-sizing: border-box;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  border: 3px solid;
+  border-color: transparent transparent rgb(var(--v-theme-primary)) rgb(var(--v-theme-primary));
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  box-sizing: border-box;
+  animation: rotationBack 0.5s linear infinite;
+  transform-origin: center center;
+}
+.loader::before {
+  width: 32px;
+  height: 32px;
+  border-color: rgb(var(--v-theme-on-surface)) rgb(var(--v-theme-on-surface)) transparent transparent;
+  animation: rotation 1.5s linear infinite;
+}
+    
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+} 
+@keyframes rotationBack {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-360deg);
+  }
 }
 </style>

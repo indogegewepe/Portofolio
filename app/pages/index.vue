@@ -7,7 +7,7 @@
             Bagas Tsiqoh Fiqyan Uwaidha
           </h1>
           <h1 ref="title" class="text-xl font-semibold mb-4">
-            Front-End Developer
+            Full-Stack Developer
           </h1>
           <p class="text-medium-emphasis border-s-2 pl-4 mb-12">
             Full Stack Developer dengan pengalaman membangun aplikasi web menggunakan Nuxt.js, Node.js, dan Express.js. Berpengalaman dalam pengembangan RESTful API, desain database, autentikasi JWT, serta deployment aplikasi di Google Cloud Platform. Memiliki minat pada pengembangan sistem terdistribusi, optimasi algoritma, dan scalable backend architecture.
@@ -310,7 +310,7 @@ const scrambleTweens = ref<gsap.core.Tween[]>([])
 const stats = [
   { label: "Spesialisasi", value: "Frontend Developer", sub: "Vue · Nuxt.js · TypeScript · Modern Web Architecture · Pinia" },
   { label: "Background", value: "Informatika", sub: "Full-stack & Cloud Computing" },
-  { label: "Hobby", value: "Game · ANIMEK · Comic", sub: "Minecraft · Black Clover · Solo Leveling" }
+  { label: "Hobby", value: "Game · Anime · Comic", sub: "Minecraft · Black Clover · Solo Leveling" }
 ]
 
 const paragraphs = [
