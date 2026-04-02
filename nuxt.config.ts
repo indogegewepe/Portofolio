@@ -71,7 +71,7 @@ export default defineNuxtConfig({
         },
       },
       theme: {
-        defaultTheme: 'light',
+        defaultTheme: 'dark',
         themes: {
           light: {
             dark: false,
@@ -121,7 +121,6 @@ export default defineNuxtConfig({
   i18n: {
     strategy: 'no_prefix',
     defaultLocale: 'id',
-    lazy: true,
     langDir: 'locales',
     vueI18n: './i18n.config.ts',
     detectBrowserLanguage: {
