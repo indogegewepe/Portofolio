@@ -525,7 +525,8 @@ const educationItems = computed(() => [
 const heroTitle = computed(() => t('home.hero.role'))
 const heroLead = computed(() => t('home.hero.lead'))
 
-const cloudinaryCloudName = 'dmv5yxts1'
+const runtimeConfig = useRuntimeConfig()
+const cloudinaryCloudName = runtimeConfig.public.cloudinaryCloudName as string
 
 const getProjectImageSrc = (url: string, width = 800) => {
   if (!url) return ''
