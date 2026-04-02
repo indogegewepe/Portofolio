@@ -95,10 +95,11 @@
     }
 
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    const { isAndroid } = useDeviceDetection()
 
     await nextTick()
 
-    if (!reduceMotion && loaderRoot.value && monoRef.value && nameRef.value && tagRef.value && ruleRef.value) {
+    if (!reduceMotion && !isAndroid && loaderRoot.value && monoRef.value && nameRef.value && tagRef.value && ruleRef.value) {
       introTl = gsap.timeline({ defaults: { ease: 'power2.out' } })
       introTl
         .set([monoRef.value, nameRef.value, tagRef.value], { opacity: 0, y: 16 })
@@ -120,7 +121,7 @@
       await wait(minDuration - elapsed)
     }
 
-    if (!reduceMotion && loaderRoot.value && monoRef.value && nameRef.value && tagRef.value && ruleRef.value) {
+    if (!reduceMotion && !isAndroid && loaderRoot.value && monoRef.value && nameRef.value && tagRef.value && ruleRef.value) {
       outroTl = gsap.timeline({ defaults: { ease: 'power2.in' } })
       outroTl
         .to([tagRef.value, ruleRef.value], { opacity: 0, y: -6, duration: 0.18 })

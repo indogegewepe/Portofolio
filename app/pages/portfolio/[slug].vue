@@ -131,24 +131,28 @@ const projectStack = computed(() => currentProject.value?.stack || [])
 
 onMounted(() => {
   ctx.value = gsap.context(() => {
-    const sections = gsap.utils.toArray<HTMLElement>("[data-reveal-section]")
-    sections.forEach((section) => {
-      const items = section.querySelectorAll("[data-reveal-item]")
-      if (!items.length) return
+    const { isAndroid } = useDeviceDetection()
 
-      gsap.from(items, {
-        y: 28,
-        opacity: 0,
-        duration: 0.65,
-        ease: "power2.out",
-        stagger: 0.1,
-        scrollTrigger: {
-          trigger: section,
-          start: "top 84%",
-          toggleActions: "play none none reverse"
-        }
+    if (!isAndroid) {
+      const sections = gsap.utils.toArray<HTMLElement>("[data-reveal-section]")
+      sections.forEach((section) => {
+        const items = section.querySelectorAll("[data-reveal-item]")
+        if (!items.length) return
+
+        gsap.from(items, {
+          y: 28,
+          opacity: 0,
+          duration: 0.65,
+          ease: "power2.out",
+          stagger: 0.1,
+          scrollTrigger: {
+            trigger: section,
+            start: "top 84%",
+            toggleActions: "play none none reverse"
+          }
+        })
       })
-    })
+    }
   })
 })
 
