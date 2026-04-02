@@ -27,7 +27,7 @@
           <div ref="mainRef" class="hero-portrait-wrap">
             <div ref="outerRef">
               <v-card variant="elevated" class="hero-portrait-card">
-                <v-img ref="logoRef" :lazy-src="profileImage" :src="profileImage" cover>
+                <v-img ref="logoRef" :src="profileImage" cover>
                   <template #placeholder>
                     <div class="d-flex align-center justify-center fill-height">
                       <v-progress-circular color="primary" indeterminate />
@@ -100,7 +100,14 @@
           data-reveal-item
         >
           <v-card class="panel-card project-card d-flex flex-column w-100" variant="text" :to="`/portfolio/${value.slug}`">
-            <v-img v-if="value.img" height="220" :src="value.img" cover class="project-image" />
+            <v-img
+              v-if="value.img"
+              height="220"
+              :src="getProjectImageSrc(value.img)"
+              sizes="(max-width: 600px) 92vw, (max-width: 960px) 45vw, 380px"
+              cover
+              class="project-image"
+            />
             <v-card-title class="text-h5 font-weight-bold text-primary">{{ value.title }}</v-card-title>
             <v-card-text class="text-medium-emphasis">{{ value.desc }}</v-card-text>
             <div class="d-flex flex-wrap ga-2 px-4 pb-4">
@@ -517,6 +524,22 @@ const educationItems = computed(() => [
 ])
 const heroTitle = computed(() => t('home.hero.role'))
 const heroLead = computed(() => t('home.hero.lead'))
+
+const cloudinaryCloudName = 'dmv5yxts1'
+
+const getProjectImageSrc = (url: string, width = 800) => {
+  if (!url) return ''
+  const encoded = encodeURIComponent(url)
+  return `https://res.cloudinary.com/${cloudinaryCloudName}/image/fetch/f_auto,q_auto,c_fill,w_${width},h_450/${encoded}`
+}
+
+const getProjectImageSrcSet = (url: string) => {
+  if (!url) return ''
+  const widths = [360, 560, 800, 1200]
+  return widths
+    .map(width => `${getProjectImageSrc(url, width)} ${width}w`)
+    .join(', ')
+}
 
 const scrollToElement = (id: string) => {
   const el = document.getElementById(id);
