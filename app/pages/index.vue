@@ -612,7 +612,7 @@ onMounted(async () => {
         scrollTrigger: {
           trigger: section,
           start: "top 82%",
-          toggleActions: "play none none reverse"
+          toggleActions: "play none none none"
         }
       })
     })
@@ -694,6 +694,12 @@ onUnmounted(() => {
   backdrop-filter: blur(2px);
 }
 
+@media (max-width: 959px) {
+  .panel-card {
+    backdrop-filter: none;
+  }
+}
+
 .about-paragraph {
   line-height: 1.75;
   margin-bottom: 1rem;
@@ -705,6 +711,7 @@ onUnmounted(() => {
 
 .project-card {
   transition: transform 220ms ease, box-shadow 220ms ease;
+  will-change: transform;
 }
 
 .project-card:hover {

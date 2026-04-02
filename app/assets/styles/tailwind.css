@@ -96,6 +96,17 @@
   filter: blur(72px);
   opacity: 0.2;
   z-index: 0;
+  will-change: transform;
+}
+
+@media (max-width: 599px) {
+  .app-atmosphere::before,
+  .app-atmosphere::after {
+    filter: blur(40px);
+    width: clamp(10rem, 60vw, 20rem);
+    height: clamp(10rem, 60vw, 20rem);
+    opacity: 0.15;
+  }
 }
 
 .app-atmosphere::before {
@@ -121,6 +132,12 @@
     radial-gradient(rgba(var(--v-theme-on-surface), 0.22) 0.5px, transparent 0.5px);
   background-size: 3px 3px, 5px 5px;
   background-position: 0 0, 1px 1px;
+}
+
+@media (max-width: 599px) {
+  .app-atmosphere-grain {
+    display: none;
+  }
 }
 
 .app-atmosphere > :not(.app-atmosphere-grain) {
