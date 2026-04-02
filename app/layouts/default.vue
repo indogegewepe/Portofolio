@@ -23,6 +23,7 @@
             variant="tonal"
             rounded="xl"
             size="large"
+            border
             class="floating-btn text-none"
           >
             {{ locale.toUpperCase() }}
@@ -36,6 +37,7 @@
             variant="tonal"
             rounded="xl"
             size="large"
+            border
             class="floating-btn text-none"
           >
             {{ t(`theme.${isDark ? 'light' : 'dark'}`) }}
@@ -49,11 +51,10 @@
       <v-btn
         color="primary"
         variant="tonal"
-        prepend-icon=""
-        append-icon=""
         aria-label="Scroll to top"
         rounded="xl"
         size="large"
+        border
         class="floating-btn floating-btn--corner"
         @click="scrollToTop"
       >
@@ -166,7 +167,6 @@
   min-height: 100vh;
   display: grid;
   place-items: center;
-  padding: 1.25rem;
 }
 
 .layout-content--loading {
@@ -190,16 +190,9 @@
 }
 
 .floating-btn {
-  min-height: 2.25rem;
-  min-width: 2.7rem;
-  padding-inline: 0.8rem;
-  border: 1px solid rgba(var(--v-theme-on-surface), 0.14);
   background:
     linear-gradient(145deg, rgba(var(--v-theme-surface), 0.86), rgba(var(--v-theme-surface), 0.74));
-  backdrop-filter: blur(14px);
-  box-shadow:
-    0 10px 30px rgba(0, 0, 0, 0.12),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -285,11 +278,6 @@
   .floating-btn {
     min-width: 2.5rem;
     padding-inline: 0.6rem;
-    backdrop-filter: none;
-  }
-
-  .floating-btn :deep(.v-icon) {
-    font-size: 1.05rem;
   }
 
   .floating-btn--corner {

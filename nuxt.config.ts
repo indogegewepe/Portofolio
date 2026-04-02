@@ -33,7 +33,10 @@ export default defineNuxtConfig({
       include: [
         'gsap',
         'gsap/ScrollTrigger',
-        'gsap/ScrambleTextPlugin'
+        'gsap/ScrambleTextPlugin',
+        '@vue/devtools-core',
+        '@vue/devtools-kit',
+        'gsap/SplitText',
       ]
     }
   },
