@@ -215,6 +215,7 @@
   right: 1rem;
   bottom: 1rem;
   z-index: 20;
+  transform: translateZ(0);
 }
 
 .loader-editorial {
@@ -284,6 +285,7 @@
   .floating-btn {
     min-width: 2.5rem;
     padding-inline: 0.6rem;
+    backdrop-filter: none;
   }
 
   .floating-btn :deep(.v-icon) {
