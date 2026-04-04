@@ -5,7 +5,7 @@
         <v-col cols="12" lg="10">
           <v-card variant="text" class="hero-card mb-6" data-reveal-section>
             <v-btn prepend-icon="mdi-arrow-left" variant="outlined" color="primary" class="text-none" @click="router.back()" data-reveal-item>
-              {{ t('projects.back') }}
+              Kembali ke Portfolio
             </v-btn>
 
             <h1 class="detail-title mb-2" data-reveal-item>{{ projectTitle }}</h1>
@@ -22,7 +22,7 @@
             <div v-if="content" class="markdown-body" v-html="content" data-reveal-item />
             <div v-else class="empty-state" data-reveal-item>
               <v-icon size="48">mdi-file-document-outline</v-icon>
-              <p class="mt-4 text-medium-emphasis">{{ t('projects.empty') }}</p>
+              <p class="mt-4 text-medium-emphasis">Data tidak ditemukan.</p>
             </div>
           </v-card>
         </v-col>
@@ -40,8 +40,6 @@ import { useRoute, useRouter } from "vue-router"
 
 gsap.registerPlugin(ScrollTrigger)
 
-const { t } = useI18n()
-
 const route = useRoute()
 const router = useRouter()
 
@@ -53,61 +51,45 @@ type ProjectMeta = { title: string, desc: string, stack: string[], slug: string 
 
 const projectCatalog = computed(() => [
   {
-    title: t('home.showcase.projects.0.title'),
-    desc: t('home.showcase.projects.0.desc'),
-    stack: [
-      t('home.showcase.projects.0.stack.0'),
-      t('home.showcase.projects.0.stack.1'),
-      t('home.showcase.projects.0.stack.2'),
-    ],
+    title: 'DocuGen AI',
+    desc: 'AI untuk menghasilkan README baru yang lebih terstruktur, rapi, dan profesional dalam format Markdown.',
+    stack: ['Next.js', 'AI', 'Tailwind CSS'],
+    slug: 'docugen-ai',
+  },
+  {
+    title: 'UAD Course Scheduler',
+    desc: 'Web-Based Academic Scheduling System with Dynamic Constraints',
+    stack: ['Nuxt.js', 'FastAPI', 'Supabase'],
     slug: 'skripsiku',
   },
   {
-    title: t('home.showcase.projects.1.title'),
-    desc: t('home.showcase.projects.1.desc'),
-    stack: [
-      t('home.showcase.projects.1.stack.0'),
-      t('home.showcase.projects.1.stack.1'),
-      t('home.showcase.projects.1.stack.2'),
-    ],
+    title: 'WhatsApp Nutrition Bot',
+    desc: 'WhatsApp Nutrition Bot adalah aplikasi berbasis WhatsApp yang memberikan informasi nutrisi dari makanan yang dimasukkan pengguna. Bot ini dirancang untuk membantu pengguna memantau asupan kalori dan nutrisi harian mereka dengan mudah.',
+    stack: ['WWeb.js', 'Google Translate API', 'QR Code Terminal'],
     slug: 'Bot-Whatsapp',
   },
   {
-    title: t('home.showcase.projects.2.title'),
-    desc: t('home.showcase.projects.2.desc'),
-    stack: [
-      t('home.showcase.projects.2.stack.0'),
-      t('home.showcase.projects.2.stack.1'),
-    ],
+    title: 'Find The Different',
+    desc: 'Game edukasi interaktif yang dirancang untuk anak-anak',
+    stack: ['Unity', 'C#'],
     slug: 'GameDev',
   },
   {
-    title: t('home.showcase.projects.3.title'),
-    desc: t('home.showcase.projects.3.desc'),
-    stack: [
-      t('home.showcase.projects.3.stack.0'),
-      t('home.showcase.projects.3.stack.1'),
-      t('home.showcase.projects.3.stack.2'),
-    ],
+    title: 'Web PHP CRUD',
+    desc: 'Website PHP native dengan fungsionalitas CRUD dan download file pdf',
+    stack: ['PHP', 'MySQL', 'Bootstrap'],
     slug: 'Wonosobo',
   },
   {
-    title: t('home.showcase.projects.4.title'),
-    desc: t('home.showcase.projects.4.desc'),
-    stack: [
-      t('home.showcase.projects.4.stack.0'),
-      t('home.showcase.projects.4.stack.1'),
-      t('home.showcase.projects.4.stack.2'),
-    ],
+    title: 'Bot Discord',
+    desc: 'Play song Bot Discord',
+    stack: ['Discord.js', 'Distube', 'JavaScript'],
     slug: 'Supra-X-125',
   },
   {
-    title: t('home.showcase.projects.5.title'),
-    desc: t('home.showcase.projects.5.desc'),
-    stack: [
-      t('home.showcase.projects.5.stack.0'),
-      t('home.showcase.projects.5.stack.1'),
-    ],
+    title: 'View Saved Wifi',
+    desc: 'View saved wifi password on windows using simple code python',
+    stack: ['Windows', 'Python'],
     slug: 'View-saved-wifi-password',
   },
 ])
@@ -125,8 +107,8 @@ const content = computed(() => {
   return marked.parse(data.value as string)
 })
 
-const projectTitle = computed(() => currentProject.value?.title || t('projects.fallbackTitle'))
-const projectDescription = computed(() => currentProject.value?.desc || t('projects.fallbackDescription'))
+const projectTitle = computed(() => currentProject.value?.title || 'Detail Project')
+const projectDescription = computed(() => currentProject.value?.desc || 'Repository detail dan dokumentasi project.')
 const projectStack = computed(() => currentProject.value?.stack || [])
 
 onMounted(() => {

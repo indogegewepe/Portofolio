@@ -11,7 +11,6 @@ export default defineNuxtConfig({
 
   // ssr: false,
   modules: [
-    '@nuxtjs/i18n',
     '@nuxt/fonts',
     'vuetify-nuxt-module',
     '@nuxt/eslint',
@@ -23,7 +22,7 @@ export default defineNuxtConfig({
         name: 'fix-windows-malformed-fs-path',
         configureServer(server) {
           server.middlewares.use((req, res, next) => {
-            const url = req.url
+            const url = (req as { url?: string }).url
             if (url?.includes('/_nuxt/@fsD:/')) {
               res.statusCode = 302
               res.setHeader('Location', url.replace('/_nuxt/@fsD:/', '/_nuxt/@fs/D:/'))
@@ -43,6 +42,7 @@ export default defineNuxtConfig({
         '@vue/devtools-core',
         '@vue/devtools-kit',
         'gsap/SplitText',
+        'marked',
       ]
     }
   },
@@ -124,27 +124,4 @@ export default defineNuxtConfig({
     },
   },
 
-  i18n: {
-    strategy: 'no_prefix',
-    defaultLocale: 'id',
-    langDir: 'locales',
-    vueI18n: './i18n.config.ts',
-    detectBrowserLanguage: {
-      useCookie: true,
-      cookieKey: 'i18n_redirected',
-      redirectOn: 'root',
-    },
-    locales: [
-      {
-        code: 'id',
-        language: 'id-ID',
-        file: 'id.json',
-      },
-      {
-        code: 'en',
-        language: 'en-US',
-        file: 'en.json',
-      },
-    ],
-  },
 })

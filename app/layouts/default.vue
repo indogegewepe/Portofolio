@@ -4,8 +4,8 @@
       <div class="app-atmosphere-grain" aria-hidden="true" />
       <div class="loader-editorial">
         <p ref="monoRef" class="loader-mono">BU</p>
-        <h2 ref="nameRef" class="loader-name">{{ t('loader.name') }}</h2>
-        <p ref="tagRef" class="loader-tag">{{ t('loader.tag') }}</p>
+        <h2 ref="nameRef" class="loader-name">Bagas Uwaidha</h2>
+        <p ref="tagRef" class="loader-tag">Tech explorer, lifelong learner, global thinker.</p>
         <div class="loader-rule-wrap" aria-hidden="true">
           <span ref="ruleRef" class="loader-rule" />
         </div>
@@ -16,22 +16,8 @@
       <header class="app-utility">
         <div class="app-utility-inner">
           <v-btn
-            prepend-icon="mdi-translate"
-            :aria-label="t('language.toggleLabel')"
-            @click="toggleLocale"
-            color="primary"
-            variant="tonal"
-            rounded="xl"
-            size="large"
-            border
-            class="floating-btn text-none"
-          >
-            {{ locale.toUpperCase() }}
-          </v-btn>
-
-          <v-btn
             :prepend-icon="themeIcon"
-            :aria-label="t('theme.toggleLabel')"
+            aria-label="Ganti tema"
             @click="toggleTheme"
             color="primary"
             variant="tonal"
@@ -40,7 +26,7 @@
             border
             class="floating-btn text-none"
           >
-            {{ t(`theme.${isDark ? 'light' : 'dark'}`) }}
+            {{ isDark ? 'Light' : 'Dark' }}
           </v-btn>
         </div>
       </header>
@@ -71,7 +57,6 @@
 
   const loading = ref(true)
   const theme = useTheme()
-  const { t, locale, setLocale } = useI18n()
   const loaderRoot = ref<HTMLElement | null>(null)
   const monoRef = ref<HTMLElement | null>(null)
   const nameRef = ref<HTMLElement | null>(null)
@@ -143,11 +128,6 @@
     const nextTheme = theme.global.current.value.dark ? 'light' : 'dark'
     theme.change(nextTheme)
     localStorage.setItem('theme', nextTheme)
-  }
-
-  const toggleLocale = async () => {
-    const nextLocale = locale.value === 'id' ? 'en' : 'id'
-    await setLocale(nextLocale)
   }
 
   const scrollToTop = () => {

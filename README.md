@@ -11,7 +11,6 @@ Personal portfolio berbasis **Nuxt** yang menampilkan profil, pengalaman, skill,
 * 🎯 Hero section dengan animasi teks (GSAP)
 * 📁 Showcase project dengan thumbnail responsif
 * 📄 Detail project di-render langsung dari README GitHub
-* 🌐 Multi-language (Indonesia & English)
 * 🌙 Light / Dark mode
 * 🔔 Global snackbar notification system
 * 📱 Fully responsive (mobile & desktop)
@@ -25,7 +24,6 @@ Personal portfolio berbasis **Nuxt** yang menampilkan profil, pengalaman, skill,
 * TypeScript
 * Vuetify 4
 * Pinia
-* Nuxt i18n
 * GSAP
 * Tailwind CSS
 * Cloudinary (Fetch Delivery)
@@ -90,9 +88,6 @@ app/
  │
  └── assets/
       └── styles/
-
-i18n/
- └── locales/
 ```
 
 ---
